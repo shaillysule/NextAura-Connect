@@ -1,0 +1,17 @@
+:root{
+  --primary: #6b8e6b;      /* green-ish */
+  --accent: #ff9aa2;       /* accent/pink */
+  --bg: #f6f7fb;
+  --muted: #666;
+  --container-bg: linear-gradient(135deg, #2d2a3a 0%, #6b4253 100%);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: Inter, system-ui, Arial, sans-serif;
+  background: var(--bg);
+  color: #111;
+}
+a { text-decoration:none; color:inherit; }
+button { font-family: inherit; }

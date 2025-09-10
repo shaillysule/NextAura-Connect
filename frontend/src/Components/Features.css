@@ -1,0 +1,16 @@
+.card-img-container {
+    background: linear-gradient(135deg, pink, #c3cfe2); /* Hero ke matching gradient */
+    border-radius: 12px;
+    padding: 20px; /* thoda space taaki image tight na lage */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px; /* sab cards same height ke ho */
+  }
+  
+  .card-img-container img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  

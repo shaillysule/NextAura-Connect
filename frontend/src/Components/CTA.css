@@ -1,0 +1,19 @@
+.cta-section {
+    background: linear-gradient(135deg, #c5cae9, #f7f9fc);
+    border-radius: 20px;
+    margin: 3rem auto;
+    max-width: 1000px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  }
+  
+  .cta-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #222;
+  }
+  
+  .cta-sub {
+    font-size: 1.1rem;
+    color: #555;
+  }
+  
