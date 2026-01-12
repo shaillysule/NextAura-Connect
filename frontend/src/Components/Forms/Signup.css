@@ -1,0 +1,35 @@
+.signup-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+
+    background: linear-gradient(
+      135deg,
+      #eef4f8,
+      #f6e9ef,
+      #eef4f8
+    );
+  }
+  
+  
+  .signup-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 30px;
+    border-radius: 16px;
+  
+    /* same soft gradient vibe as feature cards */
+    background: linear-gradient(135deg, #f6c1cc, #d6dde8);
+  
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  }
+  
+  .signup-card h3 {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+  .signup-card a{
+    padding: 30px;
+  }

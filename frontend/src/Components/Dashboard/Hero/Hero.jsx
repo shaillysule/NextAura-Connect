@@ -18,8 +18,8 @@ function Hero() {
 
           {/* Actions */}
           <div className="hero-actions">
-            <a href="/signup" className="btn primary">List a Resource</a>
-            <a href="/signup" className="btn ghost">Find Resources</a>
+            <a href="/signup" className="btn primary">List a resource</a>
+            <a href="/login" className="btn ghost">Find a resouce</a>
           </div>
 
         

@@ -1,18 +1,26 @@
 import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css'
-import Landing from './pages/Landing '
+import Landing from "./pages/Landing"
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import { Signup } from './Components/Forms/Signup';
+import { Login } from './Components/Forms/Login';
+import { Homepage } from './pages/Homepage';
 function App() {
 
 
   return (
     <>
-  
-         <Landing/>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/signup"element={<Signup/>}/>
+          <Route path="login"element={<Login/>}/>
+          <Route path="/homepage"element={<Homepage/>}/>
+        </Routes>
+      </BrowserRouter>
     </>
+
   )
 }
 
