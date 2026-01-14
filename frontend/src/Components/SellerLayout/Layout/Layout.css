@@ -1,0 +1,14 @@
+.seller-body {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  overflow: visible; /* 🔥 VERY IMPORTANT */
+}
+
+.seller-content {
+  flex: 1;
+  padding: 20px;
+  background: linear-gradient(135deg, #f6c1cc, #d6dde8);
+  position: relative;
+  z-index: 1;
+}
