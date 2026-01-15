@@ -18,7 +18,8 @@
 
 /* CARD */
 .dash-card {
-  background: rgba(255, 255, 255, 0.35);
+  /* background: rgba(255, 255, 255, 0.35); */
+  background: linear-gradient(135deg, #f6c1cc, #d6dde8);
   backdrop-filter: blur(12px);
   border-radius: 18px;
   padding: 26px 20px;

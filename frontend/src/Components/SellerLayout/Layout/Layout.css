@@ -8,7 +8,8 @@
 .seller-content {
   flex: 1;
   padding: 20px;
-  background: linear-gradient(135deg, #f6c1cc, #d6dde8);
+   /* background: #ffff; */
+  background: linear-gradient(135deg, #f7faff, #eef3ff);
   position: relative;
   z-index: 1;
 }
