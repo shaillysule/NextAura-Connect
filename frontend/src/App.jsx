@@ -6,7 +6,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Signup } from './Components/Forms/Signup';
 import { Login } from './Components/Forms/Login';
 import { Homepage } from './pages/Homepage';
-import { SellerDashboard }  from './Components/SellerDashboard/Dashboard/Dashboard';
+import { Dashboard }  from './Components/SellerDashboard/Dashboard/Dashboard';
+import { Cards } from './Components/SellerDashboard/Cards/Cards';
+import { AddProduct } from './Components/AddProduct/AddProduct';
+import { Orders } from './Components/Orders/Orders';
+import { MyProducts } from './Components/MyProducts/MyProducts';
 function App() {
 
 
@@ -18,7 +22,15 @@ function App() {
           <Route path="/signup"element={<Signup/>}/>
           <Route path="/login"element={<Login/>}/>
           <Route path="/homepage"element={<Homepage/>}/>
-          <Route path="/sellerDashboard"element={<SellerDashboard/>}/>
+
+          <Route path="/seller" element={<Dashboard />}>
+            <Route index element={<Cards />} />
+            <Route path="dashboard" element={<Cards />} />
+            <Route path="add-product" element={<AddProduct />} />
+            <Route path="orders" element={<Orders />} />
+            <Route path="my-products" element={<MyProducts />} />
+          </Route>
+
         </Routes>
       </BrowserRouter>
     </>

@@ -5,26 +5,63 @@ import {
   FaBox,
   FaShoppingCart
 } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
 
 const Sidebar = () => {
   return (
     <div className="sidebar">
-      
-
       <ul className="sidebar-menu">
-        <li className="active">
-          <FaHome /> Dashboard
-        </li>
+
         <li>
-          <FaPlus /> Add Product
+          <NavLink
+            to="/seller/dashboard"
+            className={({ isActive }) =>
+              isActive ? "sidebar-link active" : "sidebar-link"
+            }
+          >
+            <FaHome />
+            <span>Dashboard</span>
+          </NavLink>
         </li>
+
         <li>
-          <FaBox /> My Products
+          <NavLink
+            to="/seller/add-product"
+            className={({ isActive }) =>
+              isActive ? "sidebar-link active" : "sidebar-link"
+            }
+          >
+            <FaPlus />
+            <span>Add Product</span>
+          </NavLink>
         </li>
+
         <li>
-          <FaShoppingCart /> Orders
+          <NavLink
+            to="/seller/my-products"
+            className={({ isActive }) =>
+              isActive ? "sidebar-link active" : "sidebar-link"
+            }
+          >
+            <FaBox />
+            <span>My Products</span>
+          </NavLink>
         </li>
+
+
+        <li>
+          <NavLink
+            to="/seller/orders"
+            className={({ isActive }) =>
+              isActive ? "sidebar-link active" : "sidebar-link"
+            }
+          >
+            <FaShoppingCart />
+            <span>Orders</span>
+          </NavLink>
+        </li>
+
       </ul>
     </div>
   );

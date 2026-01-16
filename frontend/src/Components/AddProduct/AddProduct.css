@@ -1,0 +1,155 @@
+.add-product-page {
+  max-width: 900px;
+  margin: auto;
+}
+
+/* Header */
+.add-product-header {
+  margin-bottom: 24px;
+}
+
+.add-product-header h2 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.add-product-header p {
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* Glass Card */
+.add-product-card {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 25px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Form */
+.add-product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-row {
+  display: flex;
+  gap: 18px;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+/* Input with icon */
+.input-icon {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 12px 14px;
+  gap: 10px;
+  border: 1px solid #e5e7eb;
+  transition: 0.3s;
+}
+
+.input-icon svg {
+  color: #6b7280;
+}
+
+.input-icon input,
+.input-icon select {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+  background: transparent;
+}
+
+/* Hover focus */
+.input-icon:focus-within {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* Textarea */
+textarea {
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  resize: none;
+  height: 90px;
+  outline: none;
+  transition: 0.3s;
+}
+
+textarea:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* Upload box */
+.upload-box {
+  height: 120px;
+  border: 2px dashed #c7d2fe;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #6366f1;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upload-box:hover {
+  background: rgba(99, 102, 241, 0.08);
+  transform: translateY(-3px);
+}
+
+/* Buttons */
+.form-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(99, 102, 241, 0.35);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid #d1d5db;
+  padding: 12px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-secondary:hover {
+  background: #f3f4f6;
+}

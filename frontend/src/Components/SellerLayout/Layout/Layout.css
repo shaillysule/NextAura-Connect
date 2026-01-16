@@ -7,9 +7,12 @@
 
 .seller-content {
   flex: 1;
-  padding: 20px;
-   /* background: #ffff; */
-  background: linear-gradient(135deg, #f7faff, #eef3ff);
-  position: relative;
-  z-index: 1;
+
+  flex: 1;
+  padding: 24px;
+  background: linear-gradient(135deg, #f6c1cc, #d6dde8);
+  height: calc(100vh - 64px);
+  overflow-y: auto;  
+
+
 }
