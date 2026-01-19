@@ -1,0 +1,57 @@
+.how-home {
+    padding: 80px 60px;
+    background: linear-gradient(135deg, #f8fafc, #eef4f8);
+    text-align: center;
+  }
+  
+  .how-home h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #243b53;
+  }
+  
+  .how-subtext {
+    margin-top: 6px;
+    margin-bottom: 40px;
+    color: #6b7280;
+  }
+  
+  .how-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+  }
+  
+  .how-card {
+    background: white;
+    border-radius: 18px;
+    padding: 30px 24px;
+  
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: all 0.25s ease;
+  }
+  
+  .how-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 35px rgba(0,0,0,0.15);
+  }
+  
+  .how-icon {
+    font-size: 34px;
+    display: block;
+    margin-bottom: 14px;
+  }
+  
+  .how-card h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #243b53;
+  }
+  
+  .how-card p {
+    font-size: 14px;
+    color: #4a4a4a;
+    line-height: 1.5;
+  }
+  

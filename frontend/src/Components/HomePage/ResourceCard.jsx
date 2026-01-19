@@ -2,7 +2,14 @@ import React from "react";
 import './ResourceCard.css'
 function ResourceCard(props) {
   return (
-    <div className="resource-card">
+    <div
+    className={`resource-card ${props.featured ? "featured" : ""}`}
+    onClick={() => props.onClick(props)}
+  >
+
+{props.featured&&(<div className="badge-featured">Recommended</div>)}
+<div className="badge-popular">🔥 Popular</div>
+<div className="badge-available">Available</div>
       <div className="resource-image">
         <img src={props.image} alt={props.title} />
       </div>

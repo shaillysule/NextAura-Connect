@@ -227,4 +227,10 @@
   .card-3 {
     animation: float 8s ease-in-out infinite;
   }
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+  }
   
