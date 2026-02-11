@@ -100,3 +100,14 @@
 .dropdown-item.logout:hover {
   background-color: #fee2e2;
 }
+
+/* ===== NavLink fix for dropdown ===== */
+.user-dropdown-menu a {
+  text-decoration: none;   /* underline remove */
+  color: inherit;          /* same text color */
+  display: flex;           /* dropdown-item jaisa behave kare */
+}
+
+.user-dropdown-menu a.active {
+  background-color: #f1f5f9; /* optional active state */
+}

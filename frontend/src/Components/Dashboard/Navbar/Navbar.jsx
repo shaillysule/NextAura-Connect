@@ -46,12 +46,6 @@ const Navbar = () => {
                 Sign up
               </a>
             </li>
-
-            <li className="nav-item">
-              <a className="nav-link" href="/seller">
-                Seller DashBoard
-              </a>
-            </li>
           </ul>
         </div>
       </div>

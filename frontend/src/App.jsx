@@ -13,6 +13,8 @@ import { Orders } from './Components/Orders/Orders';
 import { MyProducts } from './Components/MyProducts/MyProducts';
 import { Search } from './pages/Search';
 import ResourceDetail from './pages/ResourceDetail';
+import { Profile } from './Components/SellerDashboard/Profile/Profile';
+import { SellerSettings } from './Components/SellerDashboard/SellerSettings/SellerSettings';
 
 function App() {
 
@@ -35,6 +37,8 @@ function App() {
             <Route path="add-product" element={<AddProduct />} />
             <Route path="orders" element={<Orders />} />
             <Route path="my-products" element={<MyProducts />} />
+            <Route path="profile" element={<Profile/>}/>
+            <Route path="settings" element={<SellerSettings/>}/>
           </Route>
 
         </Routes>

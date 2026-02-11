@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   FaBell,
   FaUserCircle,
@@ -11,6 +12,12 @@ import "./TopNavbar.css";
 
 const TopNavbar = () => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // future: token / localStorage clear yaha hoga
+    navigate("/");
+  };
 
   return (
     <div className="top-navbar">
@@ -37,17 +44,31 @@ const TopNavbar = () => {
 
           {open && (
             <div className="user-dropdown-menu">
-              <div className="dropdown-item">
+              {/* PROFILE */}
+              <NavLink
+                to="/seller/profile"
+                className="dropdown-item"
+                onClick={() => setOpen(false)}
+              >
                 <FaUser />
                 <span>Profile</span>
-              </div>
+              </NavLink>
 
-              <div className="dropdown-item">
+              {/* SETTINGS */}
+              <NavLink
+                to="/seller/settings"
+                className="dropdown-item"
+                onClick={() => setOpen(false)}
+              >
                 <FaCog />
                 <span>Settings</span>
-              </div>
+              </NavLink>
 
-              <div className="dropdown-item logout">
+              {/* LOGOUT */}
+              <div
+                className="dropdown-item logout"
+                onClick={handleLogout}
+              >
                 <FaSignOutAlt />
                 <span>Logout</span>
               </div>
