@@ -1,7 +1,10 @@
 import React from "react";
 import "./HomeTop.css";
+import { useNavigate } from "react-router-dom";
 
 const HomeTop = () => {
+  const navigate = useNavigate(); // ✅ yahan add
+
   return (
     <section className="home-top">
       {/* LEFT SIDE */}
@@ -17,13 +20,25 @@ const HomeTop = () => {
             type="text"
             placeholder="Search tools, vehicles, electronics..."
           />
-          <button>Search</button>
+          <button onClick={() => navigate("/search")}>
+            Search
+          </button>
         </div>
 
         {/* Actions */}
         <div className="home-actions">
-          <button className="btn-primary">Find a Resource</button>
-          <button className="btn-secondary">List a Resource</button>
+          <button
+            className="btn-primary"
+            onClick={() => navigate("/search")}
+          >
+            Find a Resource
+          </button>
+          <button
+            className="btn-secondary"
+            onClick={() => navigate("/add-product")}
+          >
+            List a Resource
+          </button>
         </div>
       </div>
 

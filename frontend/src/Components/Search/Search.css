@@ -1,0 +1,46 @@
+/* Page background */
+.search-page {
+    min-height: 100vh;
+    padding: 70px 8%;
+    background: linear-gradient(
+      to bottom,
+      #f8fafc,
+      #f1f5f9,
+      #ffffff
+    );
+  }
+  
+  /* Page title */
+  .search-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 40px;
+    color: #0f172a;
+  }
+  
+  /* Grid layout */
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(300px, 1fr)
+    );
+    gap: 32px;
+  }
+  
+  /* Card wrapper for professional feel */
+  .search-card-wrapper {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 14px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+  
+  .search-card-wrapper:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+  }
+  

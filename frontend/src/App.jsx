@@ -11,6 +11,9 @@ import { Cards } from './Components/SellerDashboard/Cards/Cards';
 import { AddProduct } from './Components/AddProduct/AddProduct';
 import { Orders } from './Components/Orders/Orders';
 import { MyProducts } from './Components/MyProducts/MyProducts';
+import { Search } from './pages/Search';
+import ResourceDetail from './pages/ResourceDetail';
+
 function App() {
 
 
@@ -21,11 +24,14 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/signup"element={<Signup/>}/>
           <Route path="/login"element={<Login/>}/>
+          <Route path="/resource/:id" element={<ResourceDetail />} />
           <Route path="/homepage"element={<Homepage/>}/>
-
+          <Route path="/search" element={<Search />} />
           <Route path="/seller" element={<Dashboard />}>
             <Route index element={<Cards />} />
             <Route path="dashboard" element={<Cards />} />
+           
+
             <Route path="add-product" element={<AddProduct />} />
             <Route path="orders" element={<Orders />} />
             <Route path="my-products" element={<MyProducts />} />
