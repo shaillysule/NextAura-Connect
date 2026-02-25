@@ -1,0 +1,38 @@
+.admin-sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #c5cae9, #f7f9fc);
+  padding: 20px;
+  position: sticky;
+  z-index: 10;
+  margin-right: 10px;
+}
+
+.admin-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.admin-menu li {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  color: #0f172a;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.admin-menu li:hover {
+  background-color: #f7f9fc;
+  color: #222;
+}
+
+.admin-menu .active {
+  background-color: #f7f9fc;
+  color: #222;
+}

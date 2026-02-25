@@ -1,16 +1,18 @@
-.seller-body {
+.admin-layout {
   display: flex;
   width: 100%;
   min-height: 100vh;
-  overflow: visible; /* 🔥 VERY IMPORTANT */
+  overflow: visible; 
 }
 
-.seller-content {
+.admin-content {
   flex: 1;
   padding: 24px;
   background: linear-gradient(135deg, #f6c1cc, #d6dde8);
   height: calc(100vh - 64px);
-  overflow-y: auto;  
-
-
+  overflow-y: auto; 
 }
+
+
+
+

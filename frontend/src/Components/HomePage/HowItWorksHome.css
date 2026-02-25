@@ -59,9 +59,12 @@
   /* ================= SELLER CTA (OUTSIDE SECTION) ================= */
 
 .seller-cta-wrapper {
-  padding: 90px 60px;
+  margin-top: 80px;
+  padding: 80px 60px;
   display: flex;
   justify-content: center;
+  background: linear-gradient(135deg, #f8fafc, #eef4f8);
+
 }
 
 .seller-cta-card {
@@ -98,8 +101,8 @@
   height: 78px;
   margin: 0 auto 18px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  display: flex;
+ background: linear-gradient(135deg, #f6c1cc, #d6dde8);
+   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 36px;
@@ -137,7 +140,7 @@
 
 /* BUTTON */
 .seller-cta-btn {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: #4fa3a5;
   color: #ffffff;
   border: none;
   padding: 14px 36px;
@@ -146,7 +149,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 14px 30px rgba(99, 102, 241, 0.35);
+
 }
 
 .seller-cta-btn:hover {

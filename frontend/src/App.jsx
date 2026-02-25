@@ -15,6 +15,8 @@ import { Search } from './pages/Search';
 import ResourceDetail from './pages/ResourceDetail';
 import { Profile } from './Components/SellerDashboard/Profile/Profile';
 import { SellerSettings } from './Components/SellerDashboard/SellerSettings/SellerSettings';
+import Layout from './Components/AdminLayout/Layout/Layout';
+import AdminDashboard from './Components/AdminDashboard/Dashboard/Dashboard';
 
 function App() {
 
@@ -29,17 +31,22 @@ function App() {
           <Route path="/resource/:id" element={<ResourceDetail />} />
           <Route path="/homepage"element={<Homepage/>}/>
           <Route path="/search" element={<Search />} />
+
           <Route path="/seller" element={<Dashboard />}>
             <Route index element={<Cards />} />
             <Route path="dashboard" element={<Cards />} />
-           
-
             <Route path="add-product" element={<AddProduct />} />
             <Route path="orders" element={<Orders />} />
             <Route path="my-products" element={<MyProducts />} />
             <Route path="profile" element={<Profile/>}/>
             <Route path="settings" element={<SellerSettings/>}/>
           </Route>
+
+         <Route path="/admin" element={<Layout />}>
+          <Route index element={<AdminDashboard />} />
+
+         </Route>
+            
 
         </Routes>
       </BrowserRouter>

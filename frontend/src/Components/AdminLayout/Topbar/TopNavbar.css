@@ -1,0 +1,113 @@
+/* ===== NAVBAR ===== */
+.top-navbar {
+  height: 64px;
+  background-color: #d9e4ea;
+  border-bottom: 2px solid #4fa3a5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 28px;
+  margin-bottom: 30px;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
+
+/* LEFT */
+.top-left h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* RIGHT */
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+/* ICON */
+.nav-icon {
+  font-size: 18px;
+  color: #475569;
+  cursor: pointer;
+}
+
+/* USER DROPDOWN */
+.user-dropdown {
+  position: relative;
+}
+
+.user-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.user-icon {
+  font-size: 22px;
+  color: #334155;
+}
+
+/* ARROW */
+.dropdown-arrow {
+  font-size: 12px;
+  transition: transform 0.2s ease;
+}
+
+.dropdown-arrow.rotate {
+  transform: rotate(180deg);
+}
+
+/* 🔥 IMPORTANT: NOT dropdown-menu (bootstrap clash) */
+.user-dropdown-menu {
+  position: absolute;
+  top: 52px;
+  right: 0;
+  width: 180px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+  z-index: 100000;
+}
+
+/* ITEMS */
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  font-size: 14px;
+  color: #334155;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f5f9;
+}
+
+.dropdown-item.logout {
+  color: #dc2626;
+}
+
+.dropdown-item.logout:hover {
+  background-color: #fee2e2;
+}
+
+/* ===== NavLink fix for dropdown ===== */
+.user-dropdown-menu a {
+  text-decoration: none;   /* underline remove */
+  color: inherit;          /* same text color */
+  display: flex;           /* dropdown-item jaisa behave kare */
+}
+
+.user-dropdown-menu a.active {
+  background-color: #f1f5f9; /* optional active state */
+}
