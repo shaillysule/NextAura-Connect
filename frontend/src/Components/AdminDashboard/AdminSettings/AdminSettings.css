@@ -1,0 +1,49 @@
+.admin-settings{
+  padding:30px;
+}
+
+.settings-title{
+  font-size:24px;
+  margin-bottom:25px;
+}
+
+.settings-card{
+  background:white;
+  padding:30px;
+  border-radius:16px;
+  width:450px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.08);
+  margin-left: 200px;
+}
+
+.setting-item{
+  display:flex;
+  flex-direction:column;
+  margin-bottom:18px;
+}
+
+.setting-item label{
+  font-size:14px;
+  margin-bottom:6px;
+}
+
+.setting-item input{
+  padding:10px;
+  border-radius:6px;
+  border:1px solid #ddd;
+}
+
+.save-settings-btn{
+  background:#5d6493;
+  color:white;
+  border:none;
+  padding:10px;
+  width:100%;
+  border-radius:8px;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+.save-settings-btn:hover{
+  background:#041b62;
+}

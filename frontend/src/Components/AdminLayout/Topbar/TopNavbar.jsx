@@ -47,7 +47,7 @@ const TopNavbar = () => {
             <div className="user-dropdown-menu">
               {/* PROFILE */}
               <NavLink
-                to="/admin"
+                to="/admin/profile"
                 className="dropdown-item"
                 onClick={() => setOpen(false)}
               >
@@ -57,7 +57,7 @@ const TopNavbar = () => {
 
               {/* SETTINGS */}
               <NavLink
-                to="/admin"
+                to="/admin/settings"
                 className="dropdown-item"
                 onClick={() => setOpen(false)}
               >

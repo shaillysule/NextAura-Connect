@@ -1,0 +1,114 @@
+.admin-profile{
+  padding:30px;
+}
+
+/* TITLE */
+
+.profile-title{
+  font-size:24px;
+  margin-bottom:25px;
+  color:#1f2937;
+}
+
+/* CONTAINER */
+
+.profile-container{
+  display:flex;
+  gap:40px;
+  background: #f7f9fc;
+  padding:35px;
+  border-radius:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* LEFT SECTION */
+
+.profile-left{
+  width:220px;
+  text-align:center;
+  border-right:1px solid #eee;
+  padding-right:30px;
+}
+
+.avatar-circle{
+  width:100px;
+  height:100px;
+  background: linear-gradient(135deg, #c5cae9, #f7f9fc);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:40px;
+  color:#4b5563;
+  margin:auto;
+}
+
+.profile-left h3{
+  margin-top:15px;
+  font-size:18px;
+}
+
+.role{
+  font-size:13px;
+  color:#6b7280;
+}
+
+/* RIGHT SECTION */
+
+.profile-right{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+/* FIELD */
+
+.profile-field{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  padding:12px 15px;
+  border-radius:10px;
+  background:#f3f4f6;
+  transition:0.25s;
+}
+
+
+.field-icon{    
+  font-size:18px;
+  color: #c3c4ca;
+}
+
+.profile-field label{
+  font-size:12px;
+  color:#6b7280;
+}
+
+.profile-field p{
+  font-size:15px;
+  margin:0;
+  color:#111827;
+}
+
+/* BUTTON */
+
+.edit-btn{
+  margin-top:10px;
+  width:150px;
+  background: #5d6493;
+  color:white;
+  border:none;
+  padding:10px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:14px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  justify-content:center;
+}
+
+.edit-btn:hover{
+  background:#041b62;
+}
