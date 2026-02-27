@@ -1,116 +1,111 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./MyProducts.css";
 import { FaEdit, FaTrash } from "react-icons/fa";
-
-const dummyProducts = [
-  {
-    id: 1,
-    name: "Blue Denim Jacket",
-    category: "Clothes",
-    price: 2499,
-    stock: "In Stock",
-    status: "Active",
-    image: "/assets/blueDenimJeans.webp"
-  },
-  {
-    id: 2,
-    name: "Wireless Headphones",
-    category: "Electronics",
-    price: 3999,
-    stock: "Out of Stock",
-    status: "Inactive",
-    image: "/assets/EarPhones.jpg"
-  },
-  {
-    id: 3,
-    name: "Novel Book",
-    category: "Books",
-    price: 499,
-    stock: "In Stock",
-    status: "Active",
-    image: "/assets/novel.avif"
-  }
-];
+import axios from "axios";
 
 export const MyProducts = () => {
+  const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  const filteredProducts = dummyProducts.filter((product) => {
-    const matchName = product.name.toLowerCase().includes(search.toLowerCase());
-    const matchCategory =
-      category === "All" || product.category === category;
+  const fetchMyResources = async () => {
+    setLoading(true);
+    setError("");
+    try {
+      const token = localStorage.getItem("token");
+      const res = await axios.get("http://localhost:5000/api/resources/my", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setProducts(res.data);
+    } catch (err) {
+      setError("Resources load nahi hue. Please try again.");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchMyResources();
+  }, []);
+
+  const filteredProducts = products.filter((product) => {
+    const matchName = product.title?.toLowerCase().includes(search.toLowerCase());
+    const matchCategory = category === "All" || product.category === category;
     return matchName && matchCategory;
   });
 
+  const categories = ["All", ...new Set(products.map((p) => p.category))];
+
   return (
     <div className="my-products-page">
-      <h2 className="section-title">My Products</h2>
+      <h2 className="section-title">My Resources</h2>
 
-      {/* Filters */}
       <div className="product-filters">
         <input
           type="text"
-          placeholder="Search product..."
+          placeholder="Search resource..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-
         <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option value="All">All Categories</option>
-          <option value="Clothes">Clothes</option>
-          <option value="Electronics">Electronics</option>
-          <option value="Books">Books</option>
+          {categories.map((cat) => (
+            <option key={cat} value={cat}>{cat}</option>
+          ))}
         </select>
       </div>
 
-      {/* Table */}
-      <div className="product-table-card">
-        <table className="product-table">
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Category</th>
-              <th>Price</th>
-              <th>Stock</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
+      {loading && <p className="state-msg">Loading...</p>}
+      {error && <p className="state-msg error-msg">{error}</p>}
+      {!loading && !error && filteredProducts.length === 0 && (
+        <p className="state-msg">Koi resource nahi mila. "Add Product" se pehla resource add karo!</p>
+      )}
 
-          <tbody>
-            {filteredProducts.map((product) => (
-              <tr key={product.id}>
-                <td className="product-info">
-                  <img src={product.image} alt="" />
-                  <span>{product.name}</span>
-                </td>
-
-                <td>{product.category}</td>
-                <td>₹{product.price}</td>
-                <td>{product.stock}</td>
-
-                <td>
-                  <span
-                    className={`status-badge ${
-                      product.status === "Active"
-                        ? "active"
-                        : "inactive"
-                    }`}
-                  >
-                    {product.status}
-                  </span>
-                </td>
-
-                <td className="action-icons">
-                  <FaEdit className="edit" />
-                  <FaTrash className="delete" />
-                </td>
+      {!loading && filteredProducts.length > 0 && (
+        <div className="product-table-card">
+          <table className="product-table">
+            <thead>
+              <tr>
+                <th>Resource</th>
+                <th>Category</th>
+                <th>Rent/Day</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {filteredProducts.map((product) => (
+                <tr key={product._id}>
+                  <td className="product-info">
+                    {product.image ? (
+                      <img src={product.image} alt={product.title}
+                        onError={(e) => (e.target.style.display = "none")} />
+                    ) : (
+                      <div className="img-placeholder">📦</div>
+                    )}
+                    <span>{product.title}</span>
+                  </td>
+                  <td>{product.category}</td>
+                  <td>₹{product.rentPerDay}</td>
+                  <td>{product.address || "—"}</td>
+                  <td>
+                    <span className={`status-badge ${product.isAvailable ? "active" : "inactive"}`}>
+                      {product.isAvailable ? "Available" : "Unavailable"}
+                    </span>
+                  </td>
+                  <td className="action-icons">
+                    <FaEdit className="edit" title="Edit" />
+                    <FaTrash className="delete" title="Delete" />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };
