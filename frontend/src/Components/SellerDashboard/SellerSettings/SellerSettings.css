@@ -1,0 +1,100 @@
+.settings-page {
+  padding: 30px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.settings-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.settings-subtitle {
+  margin-top: 6px;
+  margin-bottom: 24px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* CARD */
+.settings-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+.settings-card h4 {
+  margin-bottom: 18px;
+  font-size: 16px;
+  color: #0f172a;
+}
+
+/* FORM ROW */
+.setting-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.setting-row label {
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: #475569;
+}
+
+.setting-row input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 14px;
+  outline: none;
+}
+
+.setting-row input:focus {
+  border-color: #4fa3a5;
+}
+
+/* BUTTONS */
+.save-btn {
+  margin-top: 10px;
+  background-color: #4fa3a5;
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.save-btn:hover {
+  background-color: #3b8f91;
+}
+
+/* DANGER */
+.settings-card.danger {
+  border: 1px solid #fecaca;
+  background-color: #fff7f7;
+}
+
+.danger-text {
+  font-size: 13px;
+  color: #b91c1c;
+  margin-bottom: 14px;
+}
+
+.delete-btn {
+  background-color: #dc2626;
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.delete-btn:hover {
+  background-color: #b91c1c;
+}

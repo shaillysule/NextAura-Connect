@@ -8,6 +8,7 @@ import {
   FaSignOutAlt,
   FaChevronDown,
 } from "react-icons/fa";
+
 import "./TopNavbar.css";
 
 const TopNavbar = () => {
@@ -36,7 +37,7 @@ const TopNavbar = () => {
             onClick={() => setOpen((prev) => !prev)}
           >
             <FaUserCircle className="user-icon" />
-            <span>Seller</span>
+            <span>Admin</span>
             <FaChevronDown
               className={`dropdown-arrow ${open ? "rotate" : ""}`}
             />
@@ -46,7 +47,7 @@ const TopNavbar = () => {
             <div className="user-dropdown-menu">
               {/* PROFILE */}
               <NavLink
-                to="/seller/profile"
+                to="/admin"
                 className="dropdown-item"
                 onClick={() => setOpen(false)}
               >
@@ -56,7 +57,7 @@ const TopNavbar = () => {
 
               {/* SETTINGS */}
               <NavLink
-                to="/seller/settings"
+                to="/admin"
                 className="dropdown-item"
                 onClick={() => setOpen(false)}
               >

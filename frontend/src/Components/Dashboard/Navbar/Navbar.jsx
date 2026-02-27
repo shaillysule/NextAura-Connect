@@ -48,10 +48,11 @@ const Navbar = () => {
             </li>
 
             <li className="nav-item">
-              <a className="nav-link" href="/seller">
-                Seller DashBoard
+              <a className="nav-link" href="/admin">
+                Admin
               </a>
             </li>
+
           </ul>
         </div>
       </div>
