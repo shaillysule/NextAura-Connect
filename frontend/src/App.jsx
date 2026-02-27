@@ -13,6 +13,7 @@ import { Orders } from './Components/Orders/Orders';
 import { MyProducts } from './Components/MyProducts/MyProducts';
 import { Search } from './pages/Search';
 import ResourceDetail from './pages/ResourceDetail';
+import { VerifyOtp } from "./Components/Forms/VerifyOtp";
 import { Profile } from './Components/SellerDashboard/Profile/Profile';
 import { SellerSettings } from './Components/SellerDashboard/SellerSettings/SellerSettings';
 import Layout from './Components/AdminLayout/Layout/Layout';
@@ -26,17 +27,18 @@ import AdminSettings from './Components/AdminDashboard/AdminSettings/AdminSettin
 
 function App() {
 
-
   return (
     <>
       <BrowserRouter>
         <Routes>
+          
           <Route path="/" element={<Landing />} />
-          <Route path="/signup"element={<Signup/>}/>
-          <Route path="/login"element={<Login/>}/>
+          <Route path="/signup" element={<Signup/>}/>
+          <Route path="/login" element={<Login/>}/>
           <Route path="/resource/:id" element={<ResourceDetail />} />
-          <Route path="/homepage"element={<Homepage/>}/>
+          <Route path="/homepage" element={<Homepage/>}/>
           <Route path="/search" element={<Search />} />
+          <Route path="/verify-otp" element={<VerifyOtp />} />
 
           <Route path="/seller" element={<Dashboard />}>
             <Route index element={<Cards />} />
@@ -48,21 +50,19 @@ function App() {
             <Route path="settings" element={<SellerSettings/>}/>
           </Route>
 
-         <Route path="/admin" element={<Layout />}>
-          <Route index element={<AdminDashboard />} />
-          <Route path="users" element={<Users />} />
-          <Route path="listings" element={<Listings />} />
-          <Route path="rentals" element={<Rentals />} />
-          <Route path="reports" element={<Reports />} />
-          <Route path="profile" element={<AdminProfile />} />
-          <Route path="settings" element={<AdminSettings />} />
-        </Route>
-            
+          <Route path="/admin" element={<Layout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="users" element={<Users />} />
+            <Route path="listings" element={<Listings />} />
+            <Route path="rentals" element={<Rentals />} />
+            <Route path="reports" element={<Reports />} />
+            <Route path="profile" element={<AdminProfile />} />
+            <Route path="settings" element={<AdminSettings />} />
+          </Route>
 
         </Routes>
       </BrowserRouter>
     </>
-
   )
 }
 

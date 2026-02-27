@@ -33,3 +33,28 @@
   .signup-card a{
     padding: 30px;
   }
+  .role-selection {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .role-card {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    text-align: center;
+    background: #f8f9fa;
+  }
+  
+  .role-card:hover {
+    border-color: #28a745;
+  }
+  
+  .role-card.active {
+    border-color: #28a745;
+    background: #e6f4ea;
+  }
