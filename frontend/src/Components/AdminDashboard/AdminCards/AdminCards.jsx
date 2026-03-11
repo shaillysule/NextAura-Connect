@@ -8,19 +8,56 @@ import {
   LuTrendingUp,
 } from "react-icons/lu";
 
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 const AdminCards = () => {
+
+  const [stats, setStats] = useState({
+    totalUsers: 0,
+    totalResources: 0
+  });
+
+  useEffect(() => {
+
+    const fetchStats = async () => {
+      try {
+
+        const token = localStorage.getItem("token");
+
+        const res = await axios.get(
+          "http://localhost:5000/api/admin/stats",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        setStats(res.data);
+
+      } catch (error) {
+        console.error("Error fetching stats:", error);
+      }
+    };
+
+    fetchStats();
+
+  }, []);
+
   return (
     <div className="admin-cards">
+
       <div className="admin-card">
         <div className="icon purple"><LuUsers/></div>
         <h4>Total Users</h4>
-        <span>1,240</span>
+        <span>{stats.totalUsers}</span>
       </div>
 
       <div className="admin-card">
         <div className="icon blue"><LuPackage/></div>
         <h4>Total Listings</h4>
-        <span>860</span>
+        <span>{stats.totalResources}</span>
       </div>
 
       <div className="admin-card">

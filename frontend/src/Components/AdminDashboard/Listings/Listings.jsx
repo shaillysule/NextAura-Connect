@@ -1,64 +1,64 @@
 import "./Listings.css";
-import { FaTrash, FaCheckCircle, FaEye } from "react-icons/fa";
+import { FaTrash, FaEye } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Listings = () => {
-  const listings = [
-    {
-      id: 1,
-      name: "DSA Book",
-      owner: "Rahul Sharma",
-      price: "₹120",
-      status: "Pending",
-    },
-    {
-      id: 2,
-      name: "Engineering Calculator",
-      owner: "Anjali Patel",
-      price: "₹300",
-      status: "Approved",
-    },
-    {
-      id: 3,
-      name: "Laptop Stand",
-      owner: "Karan Mehta",
-      price: "₹450",
-      status: "Pending",
-    },
-    {
-      id: 4,
-      name: "Head Set",
-      owner: "Neha Roy",
-      price: "₹550",
-      status: "Pending",
-    },
-    {
-      id: 5,
-      name: "Study Table",
-      owner: "Ram Verma",
-      price: "₹150",
-      status: "Approved",
-    },
-    {
-      id: 6,
-      name: "Heater",
-      owner: "Priya Patel",
-      price: "₹450",
-      status: "Approved",
-    },
-    {
-      id: 7,
-      name: "Fan",
-      owner: "Dharmveer Singh",
-      price: "₹600",
-      status: "Approved",
-    },
-  ];
+
+  const [listings, setListings] = useState([]);
+
+  useEffect(() => {
+    fetchListings();
+  }, []);
+
+  const fetchListings = async () => {
+    try {
+
+      const token = localStorage.getItem("token");
+
+      const res = await axios.get(
+        "http://localhost:5000/api/admin/resources",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
+      setListings(res.data);
+
+    } catch (error) {
+      console.error("Error fetching listings:", error);
+    }
+  };
+
+  const deleteListing = async (id) => {
+    try {
+
+      const token = localStorage.getItem("token");
+
+      await axios.delete(
+        `http://localhost:5000/api/admin/resources/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
+      fetchListings(); // refresh table
+
+    } catch (error) {
+      console.error("Error deleting listing:", error);
+    }
+  };
 
   return (
     <div className="admin-listings">
       <h2 className="listings-title">Listings Management</h2>
 
       <table className="listings-table">
+
         <thead>
           <tr>
             <th>ID</th>
@@ -71,27 +71,37 @@ const Listings = () => {
         </thead>
 
         <tbody>
-          {listings.map((item) => (
-            <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>{item.name}</td>
-              <td>{item.owner}</td>
-              <td>{item.price}</td>
+
+          {listings.map((item, index) => (
+
+            <tr key={item._id}>
+              <td>{index + 1}</td>
+              <td>{item.title}</td>
+              <td>{item.owner?.name}</td>
+              <td>₹{item.rentPerDay}</td>
+
               <td>
-                <span className={`status ${item.status.toLowerCase()}`}>
-                  {item.status}
+                <span className={`status ${item.isAvailable ? "approved" : "pending"}`}>
+                  {item.isAvailable ? "Available" : "Not Available"}
                 </span>
               </td>
 
               <td className="actions">
                 <FaEye className="view" />
-                <FaCheckCircle className="approve" />
-                <FaTrash className="delete" />
+                <FaTrash
+                  className="delete"
+                  onClick={() => deleteListing(item._id)}
+                />
               </td>
+
             </tr>
+
           ))}
+
         </tbody>
+
       </table>
+
     </div>
   );
 };

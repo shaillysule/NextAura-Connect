@@ -23,15 +23,16 @@ export function Login() {
       localStorage.setItem("token", token);
       localStorage.setItem("role", role);
       console.log("Full Response:", res.data);
+
       if (role === "seller") {
         navigate("/seller");
       }
       else if (role === "user") {
         navigate("/homepage");
       }
-      // else if (role === "admin") {
-      //   navigate("/admin-panel");
-      // }
+      else if (role === "admin") {
+        navigate("/admin");
+      }
       else {
         navigate("/");
       }
