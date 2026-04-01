@@ -4,20 +4,25 @@ import axios from "axios";
 import "../Components/Search/ResourceDetailpage.css";
 
 const ResourceDetail = () => {
-  const { id } = useParams(); // ✅ MongoDB _id from URL
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const [resource, setResource] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [recommended, setRecommended] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/resources/${id}/recommend`)
+      .then((res) => setRecommended(res.data))
+      .catch((err) => console.log(err));
+  }, [id]);
 
   useEffect(() => {
     const fetchResource = async () => {
       try {
-        // GET /api/resources/:id — yeh route abhi nahi hai, neeche bataya hai
-        const res = await axios.get(
-          `http://localhost:5000/api/resources/${id}`
-        );
+        const res = await axios.get(`http://localhost:5000/api/resources/${id}`);
         setResource(res.data);
       } catch (err) {
         setError("Resource nahi mila.");
@@ -26,13 +31,15 @@ const ResourceDetail = () => {
         setLoading(false);
       }
     };
-
     fetchResource();
   }, [id]);
 
   if (loading) return <div className="resource-detail-page"><p>Loading...</p></div>;
   if (error) return <div className="resource-detail-page"><p>{error}</p></div>;
   if (!resource) return null;
+
+  // ✅ Address - dono jagah se check karo (nested ya direct)
+  const address = resource?.location?.address || resource?.address || "";
 
   return (
     <div className="resource-detail-page">
@@ -46,7 +53,10 @@ const ResourceDetail = () => {
             src={resource.image}
             alt={resource.title}
             className="detail-image"
-            onError={(e) => (e.target.src = "https://via.placeholder.com/600x350")}
+            onError={(e) => {
+              e.target.onerror = null; // ✅ Infinite loop band
+              e.target.style.display = "none";
+            }}
           />
         ) : (
           <div className="detail-image-placeholder">📦</div>
@@ -61,9 +71,7 @@ const ResourceDetail = () => {
             <p className="description">{resource.description}</p>
           )}
 
-          {resource.address && (
-            <p className="address">📍 {resource.address}</p>
-          )}
+          {address && <p className="address">📍 {address}</p>}
 
           {resource.owner?.name && (
             <p className="seller-info">🧑 Listed by: {resource.owner.name}</p>
@@ -108,9 +116,56 @@ const ResourceDetail = () => {
         </div>
       </div>
 
-      <div className="route-placeholder">
-        📍 Route & Pickup Map (Coming Soon)
-      </div>
+      {/* ✅ Map - encodeURIComponent se special chars handle honge */}
+      {address && (
+        <div style={{ marginTop: "30px" }}>
+          <h3>📍 Pickup Location</h3>
+          <iframe
+            width="100%"
+            height="300"
+            style={{ borderRadius: "10px", border: "none" }}
+            loading="lazy"
+            allowFullScreen
+            src={`https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`}
+          ></iframe>
+        </div>
+      )}
+
+      {/* ✅ Recommendations */}
+      {recommended.length > 0 && (
+        <div style={{ marginTop: "30px" }}>
+          <h3>🔥 Recommended for you</h3>
+          <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+            {recommended.map((item) => (
+              <div
+                key={item._id}
+                onClick={() => navigate(`/resource/${item._id}`)}
+                style={{
+                  border: "1px solid #ccc",
+                  padding: "10px",
+                  width: "150px",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                }}
+              >
+                {item.image && (
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    style={{ width: "100%", borderRadius: "6px" }}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.style.display = "none";
+                    }}
+                  />
+                )}
+                <h4 style={{ fontSize: "14px", margin: "6px 0" }}>{item.title}</h4>
+                <p style={{ fontSize: "13px", color: "#555" }}>₹{item.rentPerDay}/day</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

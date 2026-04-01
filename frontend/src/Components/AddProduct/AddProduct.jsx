@@ -42,11 +42,12 @@ export const AddProduct = () => {
         category: formData.category,
         rentPerDay: Number(formData.rentPerDay),
         description: formData.description,
-        address: formData.address,
         availableFrom: formData.availableFrom || undefined,
         availableTo: formData.availableTo || undefined,
         image: formData.image || "",
+        // ✅ FIX: address ab location.address ke andar ja raha hai
         location: {
+          address: formData.address,
           lat: formData.lat ? Number(formData.lat) : undefined,
           lng: formData.lng ? Number(formData.lng) : undefined,
         },
@@ -134,10 +135,11 @@ export const AddProduct = () => {
           </div>
         </div>
 
+        {/* ✅ Address field - required banana ke liye required attribute add kiya */}
         <div className="form-group">
-          <label>Address</label>
+          <label>Address *</label>
           <input type="text" name="address" placeholder="e.g. MG Road, Indore, MP"
-            value={formData.address} onChange={handleChange} />
+            value={formData.address} onChange={handleChange} required />
         </div>
 
         <button type="submit" className="submit-btn" disabled={loading}>

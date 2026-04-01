@@ -19,7 +19,7 @@ function ResourceCard(props) {
         <p className="category">{props.category}</p>
 
         <div className="resource-info">
-          <span className="price">₹{props.price}/day</span>
+          <span className="price">{props.price}</span>
           <span className="location">{props.location}</span>
         </div>
 

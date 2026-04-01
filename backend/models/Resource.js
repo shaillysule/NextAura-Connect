@@ -20,13 +20,18 @@ const resourceSchema = new mongoose.Schema(
     },
     availableFrom: Date,
     availableTo: Date,
-    address: {
-      type: String,
-      default: "",
-    },
+    
     location: {
-      lat: Number,
-      lng: Number,
+      address: {
+        type: String,
+        required: true
+      },
+      lat: {
+        type: Number
+      },
+      lng: {
+        type: Number
+      }
     },
     image: {
       type: String,
