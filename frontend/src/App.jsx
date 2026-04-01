@@ -13,7 +13,10 @@ import { Orders } from './Components/Orders/Orders';
 import { MyProducts } from './Components/MyProducts/MyProducts';
 import { Search } from './pages/Search';
 import ResourceDetail from './pages/ResourceDetail';
+<<<<<<< HEAD
 // import { VerifyOtp } from "./Components/Forms/VerifyOtp";
+=======
+>>>>>>> 85eaa0c (my local changes)
 import { Profile } from './Components/SellerDashboard/Profile/Profile';
 import { SellerSettings } from './Components/SellerDashboard/SellerSettings/SellerSettings';
 import Layout from './Components/AdminLayout/Layout/Layout';
@@ -39,7 +42,10 @@ function App() {
           <Route path="/resource/:id" element={<ResourceDetail />} />
           <Route path="/homepage" element={<Homepage/>}/>
           <Route path="/search" element={<Search />} />
+<<<<<<< HEAD
         
+=======
+>>>>>>> 85eaa0c (my local changes)
 
           <Route path="/seller" element={<Dashboard />}>
             <Route index element={<Cards />} />
