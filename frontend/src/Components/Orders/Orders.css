@@ -1,7 +1,9 @@
 .orders-page {
   padding: 10px;
 }
-
+tr{
+  text-align: left;
+}
 .orders-title {
   font-size: 26px;
   font-weight: 600;

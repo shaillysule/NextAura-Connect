@@ -79,7 +79,32 @@ const ResourceDetail = () => {
             </p>
           )}
 
-          <button className="primary-btn">Request Resource</button>
+          <button
+            className="primary-btn"
+            onClick={async () => {
+              try {
+                const token = localStorage.getItem("token");
+
+                await axios.post(
+                  "http://localhost:5000/api/orders",
+                  { resourceId: resource._id },
+                  {
+                    headers: {
+                      Authorization: `Bearer ${token}`,
+                    },
+                  }
+                );
+
+                alert("Request Sent Successfully ✅");
+
+              } catch (error) {
+                console.error(error);
+                alert("Failed to send request ❌");
+              }
+            }}
+          >
+            Request Resource
+          </button>
         </div>
       </div>
 

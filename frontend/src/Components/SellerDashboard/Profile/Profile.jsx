@@ -1,70 +1,156 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import { FaCamera, FaStore, FaUser } from "react-icons/fa";
+import axios from "axios";
 
 export const Profile = () => {
-  return (
-    <div className="seller-profile-page">
 
-      <h2 className="profile-title">My Profile</h2>
+const [user, setUser] = useState({
+name: "",
+email: "",
+phone: "",
+storeName: "",
+city: "",
+});
 
-      <div className="profile-wrapper">
+useEffect(() => {
+const fetchProfile = async () => {
+try {
+const token = localStorage.getItem("token");
 
-        {/* LEFT CARD */}
-        <div className="profile-left-card">
-          <div className="profile-avatar">
-            <FaUser />
-          </div>
 
-          <h3 className="profile-name">Payal Patel</h3>
-          <p className="profile-since">Seller since 2024</p>
+    const res = await axios.get(
+      "http://localhost:5000/api/auth/profile",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
-          <button className="change-photo-btn">
-            <FaCamera /> Change Photo
-          </button>
-        </div>
+    setUser(res.data);
 
-        {/* RIGHT CARD */}
-        <div className="profile-right-card">
-          <div className="profile-form">
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-            <div className="form-group">
-              <label>Full Name</label>
-              <input type="text" defaultValue="Payal Patel" />
-            </div>
+fetchProfile();
 
-            <div className="form-group">
-              <label>Email</label>
-              <input type="email" defaultValue="payal@email.com" disabled />
-            </div>
 
-            <div className="form-group">
-              <label>Phone</label>
-              <input type="text" placeholder="+91 XXXXX XXXXX" />
-            </div>
+}, []);
 
-            <div className="form-group">
-              <label>Store Name</label>
-              <div className="input-with-icon">
-                <FaStore />
-                <input type="text" placeholder="Your store name" />
-              </div>
-            </div>
+const handleChange = (e) => {
+setUser({ ...user, [e.target.name]: e.target.value });
+};
 
-            <div className="form-group">
-              <label>City</label>
-              <input type="text" placeholder="Indore" />
-            </div>
+const handleSave = async () => {
+try {
+const token = localStorage.getItem("token");
 
-            <button className="save-profile-btn">
-              Save Changes
-            </button>
 
-          </div>
-        </div>
+  await axios.put(
+    "http://localhost:5000/api/auth/profile",
+    user,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 
+  alert("Profile Updated Successfully ✅");
+
+} catch (error) {
+  console.error(error);
+  alert("Update Failed ❌");
+}
+
+
+};
+
+return ( <div className="seller-profile-page">
+
+
+  <h2 className="profile-title">My Profile</h2>
+
+  <div className="profile-wrapper">
+
+    <div className="profile-left-card">
+      <div className="profile-avatar">
+        <FaUser />
       </div>
 
+      <h3 className="profile-name">{user.name}</h3>
+      <p className="profile-since">Seller</p>
+
+      <button className="change-photo-btn">
+        <FaCamera /> Change Photo
+      </button>
     </div>
-  );
+
+    <div className="profile-right-card">
+      <div className="profile-form">
+
+        <div className="form-group">
+          <label>Full Name</label>
+          <input
+            type="text"
+            name="name"
+            value={user.name}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Email</label>
+          <input type="email" value={user.email} disabled />
+        </div>
+
+        <div className="form-group">
+          <label>Phone</label>
+          <input
+            type="text"
+            name="phone"
+            value={user.phone}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Store Name</label>
+          <div className="input-with-icon">
+            <FaStore />
+            <input
+              type="text"
+              name="storeName"
+              value={user.storeName}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label>City</label>
+          <input
+            type="text"
+            name="city"
+            value={user.city}
+            onChange={handleChange}
+          />
+        </div>
+
+        <button className="save-profile-btn" onClick={handleSave}>
+          Save Changes
+        </button>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+);
 };

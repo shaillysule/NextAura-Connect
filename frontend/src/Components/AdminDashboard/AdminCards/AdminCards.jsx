@@ -15,7 +15,10 @@ const AdminCards = () => {
 
   const [stats, setStats] = useState({
     totalUsers: 0,
-    totalResources: 0
+    totalResources: 0,
+    activeRentals: 0,
+    pendingApprovals: 0,
+    totalRevenue: 0
   });
 
   useEffect(() => {
@@ -63,13 +66,13 @@ const AdminCards = () => {
       <div className="admin-card">
         <div className="icon orange"><LuRefreshCcw/></div>
         <h4>Active Rentals</h4>
-        <span>312</span>
+        <span>{stats.activeRentals}</span>
       </div>
 
       <div className="admin-card">
         <div className="icon green"><LuHourglass/></div>
         <h4>Pending Approvals</h4>
-        <span>24</span>
+        <span>{stats.pendingApprovals}</span>
       </div>
 
       <div className="admin-card">
@@ -81,7 +84,7 @@ const AdminCards = () => {
       <div className="admin-card">
         <div className="icon yellow"><LuTrendingUp/></div>
         <h4>Total Revenue</h4>
-        <span>₹45,600</span>
+        <span>₹{stats.totalRevenue}</span>
       </div>
 
     </div>

@@ -1,7 +1,43 @@
 import "./AdminProfile.css";
 import { FaUser, FaEnvelope, FaPhone, FaEdit } from "react-icons/fa";
 
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 const AdminProfile = () => {
+
+  const [admin, setAdmin] = useState({
+    name: "",
+    email: "",
+    role: ""
+  });
+
+  useEffect(() => {
+
+    const fetchAdmin = async () => {
+      try {
+        const token = localStorage.getItem("token");
+
+        const res = await axios.get(
+          "http://localhost:5000/api/auth/me",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        setAdmin(res.data);
+
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchAdmin();
+
+  }, []);
+
   return (
     <div className="admin-profile">
 
@@ -13,7 +49,7 @@ const AdminProfile = () => {
           <div className="avatar-circle">
             <FaUser />
           </div>
-          <h3>Admin</h3>
+          <h3>{admin.name || "Admin"}</h3>
           <p className="role">Platform Administrator</p>
         </div>
 
@@ -23,7 +59,7 @@ const AdminProfile = () => {
             <FaUser className="field-icon"/>
             <div>
               <label>Name</label>
-              <p>Admin Name</p>
+              <p>{admin.name}</p>
             </div>
           </div>
 
@@ -31,7 +67,7 @@ const AdminProfile = () => {
             <FaEnvelope className="field-icon"/>
             <div>
               <label>Email</label>
-              <p>admin@nexaura.com</p>
+              <p>{admin.email}</p>
             </div>
           </div>
 
@@ -39,7 +75,7 @@ const AdminProfile = () => {
             <FaPhone className="field-icon"/>
             <div>
               <label>Phone</label>
-              <p>+91 9876543210</p>
+              <p>Not Added</p>
             </div>
           </div>
 

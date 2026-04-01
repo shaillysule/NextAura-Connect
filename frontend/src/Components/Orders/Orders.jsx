@@ -1,90 +1,123 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Orders.css";
+import axios from "axios";
 
 export const Orders = () => {
-  const [orders, setOrders] = useState([
-    {
-      id: "#ORD001",
-      customer: "Aman Sharma",
-      product: "Wireless Headphones",
-      amount: "₹2,499",
-      status: "Pending",
-      date: "12 Aug 2024",
-    },
-    {
-      id: "#ORD002",
-      customer: "Neha Verma",
-      product: "Smart Watch",
-      amount: "₹4,999",
-      status: "Shipped",
-      date: "13 Aug 2024",
-    },
-    {
-      id: "#ORD003",
-      customer: "Rohit Jain",
-      product: "Bluetooth Speaker",
-      amount: "₹1,799",
-      status: "Delivered",
-      date: "14 Aug 2024",
-    },
-  ]);
 
-  const handleStatusChange = (index, value) => {
-    const updatedOrders = [...orders];
-    updatedOrders[index].status = value;
-    setOrders(updatedOrders);
-  };
+const [orders, setOrders] = useState([]);
 
-  return (
-    <div className="orders-page">
-      <h2 className="orders-title">My Orders</h2>
-      <p className="orders-subtitle">
-        Manage & track your customer orders
-      </p>
+useEffect(() => {
+const fetchOrders = async () => {
+try {
+const token = localStorage.getItem("token");
 
-      <div className="orders-table-wrapper">
-        <table className="orders-table">
-          <thead>
-            <tr>
-              <th>Order ID</th>
-              <th>Customer</th>
-              <th>Product</th>
-              <th>Amount</th>
-              <th>Status</th>
-              <th>Date</th>
-            </tr>
-          </thead>
 
-          <tbody>
-            {orders.map((order, index) => (
-              <tr key={order.id}>
-                <td>{order.id}</td>
-                <td>{order.customer}</td>
-                <td>{order.product}</td>
-                <td>{order.amount}</td>
+    const res = await axios.get(
+      "http://localhost:5000/api/orders/my",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
-                <td>
-                  <select
-                    className={`status-dropdown ${order.status.toLowerCase()}`}
-                    value={order.status}
-                    onChange={(e) =>
-                      handleStatusChange(index, e.target.value)
-                    }
-                  >
-                    <option>Pending</option>
-                    <option>Shipped</option>
-                    <option>Delivered</option>
-                    <option>Cancelled</option>
-                  </select>
-                </td>
+    // format backend data for UI
+    const formatted = res.data.map((order) => ({
+      id: order._id,
+      displayId: "#" + order._id.slice(-6),
+      customer: order.customer?.name || "N/A",
+      product: order.resource?.title || "N/A",
+      amount: "₹" + (order.resource?.rentPerDay || 0),
+      status: order.status || "Pending",
+      date: new Date(order.createdAt).toLocaleDateString(),
+    }));
 
-                <td>{order.date}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
+    setOrders(formatted);
+
+  } catch (err) {
+    console.error("Error fetching orders:", err);
+  }
 };
 
+fetchOrders();
+
+
+}, []);
+
+const handleStatusChange = async (index, value) => {
+try {
+const token = localStorage.getItem("token");
+
+  const orderId = orders[index].id;
+
+  await axios.put(
+    `http://localhost:5000/api/orders/${orderId}`,
+    { status: value },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  const updatedOrders = [...orders];
+  updatedOrders[index].status = value;
+  setOrders(updatedOrders);
+
+} catch (error) {
+  console.error("Error updating status:", error);
+}
+
+
+};
+
+return ( <div className="orders-page"> <h2 className="orders-title">My Orders</h2> <p className="orders-subtitle">
+Manage & track your customer orders </p>
+
+
+  <div className="orders-table-wrapper">
+    <table className="orders-table">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Customer</th>
+          <th>Product</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {orders.map((order, index) => (
+          <tr key={order.id}>
+            <td>{order.displayId}</td>
+            <td>{order.customer}</td>
+            <td>{order.product}</td>
+            <td>{order.amount}</td>
+
+            <td>
+              <select
+                className={`status-dropdown ${order.status.toLowerCase()}`}
+                value={order.status}
+                onChange={(e) =>
+                  handleStatusChange(index, e.target.value)
+                }
+              >
+                <option>Pending</option>
+                <option>Approved</option>
+                <option>Rejected</option>
+              </select>
+            </td>
+
+            <td>{order.date}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+);
+};

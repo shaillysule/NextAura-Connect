@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
   FaBell,
@@ -8,15 +8,44 @@ import {
   FaSignOutAlt,
   FaChevronDown,
 } from "react-icons/fa";
+import axios from "axios";
 import "./TopNavbar.css";
 
 const TopNavbar = () => {
   const [open, setOpen] = useState(false);
+  const [userName, setUserName] = useState("Seller"); // default
   const navigate = useNavigate();
 
+  // ✅ FETCH USER NAME
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const token = localStorage.getItem("token");
+
+        const res = await axios.get(
+          "http://localhost:5000/api/auth/me",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        setUserName(res.data.name); // 👈 dynamic name
+
+      } catch (error) {
+        console.error("User fetch error:", error);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
+  // ✅ LOGOUT
   const handleLogout = () => {
-    // future: token / localStorage clear yaha hoga
-    navigate("/");
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    navigate("/login");
   };
 
   return (
@@ -36,7 +65,7 @@ const TopNavbar = () => {
             onClick={() => setOpen((prev) => !prev)}
           >
             <FaUserCircle className="user-icon" />
-            <span>Seller</span>
+            <span>{userName}</span> {/* ✅ DYNAMIC NAME */}
             <FaChevronDown
               className={`dropdown-arrow ${open ? "rotate" : ""}`}
             />
@@ -44,7 +73,6 @@ const TopNavbar = () => {
 
           {open && (
             <div className="user-dropdown-menu">
-              {/* PROFILE */}
               <NavLink
                 to="/seller/profile"
                 className="dropdown-item"
@@ -54,7 +82,6 @@ const TopNavbar = () => {
                 <span>Profile</span>
               </NavLink>
 
-              {/* SETTINGS */}
               <NavLink
                 to="/seller/settings"
                 className="dropdown-item"
@@ -64,7 +91,6 @@ const TopNavbar = () => {
                 <span>Settings</span>
               </NavLink>
 
-              {/* LOGOUT */}
               <div
                 className="dropdown-item logout"
                 onClick={handleLogout}

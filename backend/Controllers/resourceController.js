@@ -73,3 +73,24 @@ exports.getResourceById = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+exports.deleteResource = async (req, res) => {
+  try {
+    const resource = await Resource.findById(req.params.id);
+
+    if (!resource) {
+      return res.status(404).json({ message: "Not found" });
+    }
+
+    if (resource.owner.toString() !== req.user.id) {
+      return res.status(403).json({ message: "Unauthorized" });
+    }
+
+    await resource.deleteOne();
+
+    res.json({ message: "Deleted" });
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

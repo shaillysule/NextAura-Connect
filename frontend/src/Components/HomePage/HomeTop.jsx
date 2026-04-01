@@ -33,9 +33,10 @@ const HomeTop = () => {
           >
             Find a Resource
           </button>
+
           <button
             className="btn-secondary"
-            onClick={() => navigate("/add-product")}
+            onClick={() => navigate("/seller/add-product")}
           >
             List a Resource
           </button>

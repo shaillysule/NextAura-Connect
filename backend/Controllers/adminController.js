@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const Resource = require("../models/Resource");
+const Order = require("../models/Order"); 
 
 
 // ================= DASHBOARD STATS =================
@@ -9,12 +10,35 @@ exports.getDashboardStats = async (req, res) => {
 
     const totalUsers = await User.countDocuments();
     const totalResources = await Resource.countDocuments();
-    const availableResources = await Resource.countDocuments({ isAvailable: true });
+
+    // ✅ NEW
+    const activeRentals = await Order.countDocuments({
+      status: "Active",
+    });
+
+    const pendingApprovals = await Order.countDocuments({
+      status: "Pending",
+    });
+
+    // ✅ Revenue calculation
+    const orders = await Order.find({
+      status: { $in: ["Active", "Completed"] },
+    }).populate("resource");
+
+    let totalRevenue = 0;
+
+    orders.forEach((order) => {
+      if (order.resource?.rentPerDay) {
+        totalRevenue += order.resource.rentPerDay;
+      }
+    });
 
     res.json({
       totalUsers,
       totalResources,
-      availableResources
+      activeRentals,
+      pendingApprovals,
+      totalRevenue
     });
 
   } catch (error) {

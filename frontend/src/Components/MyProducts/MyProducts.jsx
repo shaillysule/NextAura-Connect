@@ -31,6 +31,38 @@ export const MyProducts = () => {
     fetchMyResources();
   }, []);
 
+  // ✅ DELETE FUNCTION
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm("Delete this resource?");
+    if (!confirmDelete) return;
+
+    try {
+      const token = localStorage.getItem("token");
+
+      await axios.delete(
+        `http://localhost:5000/api/resources/${id}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      // remove from UI
+      setProducts(products.filter((p) => p._id !== id));
+
+      alert("Deleted successfully ✅");
+
+    } catch (error) {
+      console.error(error);
+      alert("Delete failed ❌");
+    }
+  };
+
+  // ✅ EDIT FUNCTION (redirect)
+  const handleEdit = (id) => {
+    // 👉 navigate to edit page (you can create later)
+    window.location.href = `/seller/edit-product/${id}`;
+  };
+
   const filteredProducts = products.filter((product) => {
     const matchName = product.title?.toLowerCase().includes(search.toLowerCase());
     const matchCategory = category === "All" || product.category === category;
@@ -60,7 +92,9 @@ export const MyProducts = () => {
       {loading && <p className="state-msg">Loading...</p>}
       {error && <p className="state-msg error-msg">{error}</p>}
       {!loading && !error && filteredProducts.length === 0 && (
-        <p className="state-msg">Koi resource nahi mila. "Add Product" se pehla resource add karo!</p>
+        <p className="state-msg">
+          Koi resource nahi mila. "Add Product" se pehla resource add karo!
+        </p>
       )}
 
       {!loading && filteredProducts.length > 0 && (
@@ -81,8 +115,11 @@ export const MyProducts = () => {
                 <tr key={product._id}>
                   <td className="product-info">
                     {product.image ? (
-                      <img src={product.image} alt={product.title}
-                        onError={(e) => (e.target.style.display = "none")} />
+                      <img
+                        src={product.image}
+                        alt={product.title}
+                        onError={(e) => (e.target.style.display = "none")}
+                      />
                     ) : (
                       <div className="img-placeholder">📦</div>
                     )}
@@ -91,15 +128,31 @@ export const MyProducts = () => {
                   <td>{product.category}</td>
                   <td>₹{product.rentPerDay}</td>
                   <td>{product.address || "—"}</td>
+
                   <td>
-                    <span className={`status-badge ${product.isAvailable ? "active" : "inactive"}`}>
+                    <span
+                      className={`status-badge ${
+                        product.isAvailable ? "active" : "inactive"
+                      }`}
+                    >
                       {product.isAvailable ? "Available" : "Unavailable"}
                     </span>
                   </td>
+
                   <td className="action-icons">
-                    <FaEdit className="edit" title="Edit" />
-                    <FaTrash className="delete" title="Delete" />
+                    <FaEdit
+                      className="edit"
+                      title="Edit"
+                      onClick={() => handleEdit(product._id)}
+                    />
+
+                    <FaTrash
+                      className="delete"
+                      title="Delete"
+                      onClick={() => handleDelete(product._id)}
+                    />
                   </td>
+
                 </tr>
               ))}
             </tbody>

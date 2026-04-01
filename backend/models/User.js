@@ -22,6 +22,21 @@ const userSchema = new mongoose.Schema(
       enum: ["seller", "user", "admin"],
       default: "user",
     },
+
+    // ✅ NEW FIELDS
+    phone: {
+      type: String,
+      default: "",
+    },
+    storeName: {
+      type: String,
+      default: "",
+    },
+    city: {
+      type: String,
+      default: "",
+    },
+
   },
   { timestamps: true }
 );
