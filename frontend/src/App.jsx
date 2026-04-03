@@ -14,9 +14,12 @@ import { MyProducts } from './Components/MyProducts/MyProducts';
 import { Search } from './pages/Search';
 import ResourceDetail from './pages/ResourceDetail';
 <<<<<<< HEAD
+<<<<<<< HEAD
 // import { VerifyOtp } from "./Components/Forms/VerifyOtp";
 =======
 >>>>>>> 85eaa0c (my local changes)
+=======
+>>>>>>> 2a3b8a3 (Added new css feature)
 import { Profile } from './Components/SellerDashboard/Profile/Profile';
 import { SellerSettings } from './Components/SellerDashboard/SellerSettings/SellerSettings';
 import Layout from './Components/AdminLayout/Layout/Layout';
@@ -43,9 +46,12 @@ function App() {
           <Route path="/homepage" element={<Homepage/>}/>
           <Route path="/search" element={<Search />} />
 <<<<<<< HEAD
+<<<<<<< HEAD
         
 =======
 >>>>>>> 85eaa0c (my local changes)
+=======
+>>>>>>> 2a3b8a3 (Added new css feature)
 
           <Route path="/seller" element={<Dashboard />}>
             <Route index element={<Cards />} />

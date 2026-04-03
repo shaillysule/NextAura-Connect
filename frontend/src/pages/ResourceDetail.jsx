@@ -43,10 +43,13 @@ const ResourceDetail = () => {
 
   return (
     <div className="resource-detail-page">
+<<<<<<< HEAD
       <button className="back-btn" onClick={() => navigate(-1)}>
         ← Back
       </button>
 
+=======
+>>>>>>> 2a3b8a3 (Added new css feature)
       <div className="detail-container">
         {resource.image ? (
           <img
@@ -165,8 +168,18 @@ const ResourceDetail = () => {
             ))}
           </div>
         </div>
+<<<<<<< HEAD
       )}
     </div>
+=======
+        
+      )}
+      <button className="back-btn" onClick={() => navigate(-1)}>
+  ← Back
+</button>
+    </div>
+     
+>>>>>>> 2a3b8a3 (Added new css feature)
   );
 };
 
