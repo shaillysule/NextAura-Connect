@@ -1,31 +1,12 @@
-<<<<<<< HEAD
-/* Page background */
-.search-page {
-    min-height: 100vh;
-    padding: 70px 8%;
-    background: linear-gradient(
-=======
- /* Page background */
+  /* Page background */
 .search-page {
     min-height: 100vh;
     padding: 70px 8%;
     /*background: linear-gradient(
->>>>>>> 2a3b8a3 (Added new css feature)
       to bottom,
       #f8fafc,
       #f1f5f9,
       #ffffff
-<<<<<<< HEAD
-    );
-  }
-  
-  /* Page title */
-  .search-title {
-    font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 40px;
-    color: #0f172a;
-=======
     );*/
     background: 
   radial-gradient(circle at 10% 20%, rgba(79,163,165,0.18), transparent 40%),
@@ -62,7 +43,6 @@
     margin-bottom: 40px;
     color: #0f172a;
     text-align: center;
->>>>>>> 2a3b8a3 (Added new css feature)
   }
   
   /* Grid layout */
@@ -70,31 +50,15 @@
     display: grid;
     grid-template-columns: repeat(
       auto-fit,
-<<<<<<< HEAD
-      minmax(300px, 1fr)
-    );
-    gap: 32px;
-=======
       minmax(300px,1fr)
     );
-    gap: 28px;
+    gap: 24px;
     justify-content: center ;
     place-items: center;
->>>>>>> 2a3b8a3 (Added new css feature)
   }
   
   /* Card wrapper for professional feel */
   .search-card-wrapper {
-<<<<<<< HEAD
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
-    padding: 14px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease,
-      box-shadow 0.2s ease;
-  }
-=======
     /*background: #ffffff;*/
     background: linear-gradient(135deg,#f6c1cc,#d6dde8);
     border: 1px solid #e5e7eb;
@@ -104,16 +68,13 @@
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s ease;
       position:relative;
+      margin-top: 20px;
 }
->>>>>>> 2a3b8a3 (Added new css feature)
   
   .search-card-wrapper:hover {
     transform: translateY(-4px);
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
   }
-<<<<<<< HEAD
-  
-=======
   
   /*category tabs container*/
   .category-tabs{
@@ -182,5 +143,4 @@
 .badge-available {
   right: 6px;
   background: #22c55e;
-}
->>>>>>> 2a3b8a3 (Added new css feature)
+}   

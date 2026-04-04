@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../Components/Search/ResourceDetailpage.css";
@@ -38,18 +38,12 @@ const ResourceDetail = () => {
   if (error) return <div className="resource-detail-page"><p>{error}</p></div>;
   if (!resource) return null;
 
-  // ✅ Address - dono jagah se check karo (nested ya direct)
   const address = resource?.location?.address || resource?.address || "";
 
   return (
     <div className="resource-detail-page">
-<<<<<<< HEAD
-      <button className="back-btn" onClick={() => navigate(-1)}>
-        ← Back
-      </button>
 
-=======
->>>>>>> 2a3b8a3 (Added new css feature)
+      {/* 📦 Detail Section */}
       <div className="detail-container">
         {resource.image ? (
           <img
@@ -57,7 +51,7 @@ const ResourceDetail = () => {
             alt={resource.title}
             className="detail-image"
             onError={(e) => {
-              e.target.onerror = null; // ✅ Infinite loop band
+              e.target.onerror = null;
               e.target.style.display = "none";
             }}
           />
@@ -107,7 +101,6 @@ const ResourceDetail = () => {
                 );
 
                 alert("Request Sent Successfully ✅");
-
               } catch (error) {
                 console.error(error);
                 alert("Failed to send request ❌");
@@ -119,67 +112,76 @@ const ResourceDetail = () => {
         </div>
       </div>
 
-      {/* ✅ Map - encodeURIComponent se special chars handle honge */}
+      {/* 📍 Map */}
       {address && (
-        <div style={{ marginTop: "30px" }}>
+        <div style={{ marginTop: "40px", textAlign: "center" }}>
           <h3>📍 Pickup Location</h3>
+
           <iframe
             width="100%"
             height="300"
-            style={{ borderRadius: "10px", border: "none" }}
+            style={{ borderRadius: "10px", border: "none", marginTop: "10px" }}
             loading="lazy"
             allowFullScreen
             src={`https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`}
           ></iframe>
+
+          {/* 🔙 Back Button (ONLY ONE - Map ke niche) */}
+          <button
+            className="back-btn"
+            onClick={() => navigate(-1)}
+          >
+            ← Back
+          </button>
         </div>
       )}
 
-      {/* ✅ Recommendations */}
+      {/* 🔥 Recommendations */}
       {recommended.length > 0 && (
-        <div style={{ marginTop: "30px" }}>
+        <div style={{ marginTop: "40px" }}>
           <h3>🔥 Recommended for you</h3>
-          <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+
+          <div style={{ display: "flex", gap: "15px", flexWrap: "wrap" }}>
             {recommended.map((item) => (
               <div
                 key={item._id}
                 onClick={() => navigate(`/resource/${item._id}`)}
                 style={{
-                  border: "1px solid #ccc",
+                  border: "1px solid #eee",
                   padding: "10px",
-                  width: "150px",
-                  borderRadius: "8px",
+                  width: "160px",
+                  borderRadius: "10px",
                   cursor: "pointer",
+                  boxShadow: "0 4px 10px rgba(0,0,0,0.05)"
                 }}
               >
                 {item.image && (
                   <img
                     src={item.image}
                     alt={item.title}
-                    style={{ width: "100%", borderRadius: "6px" }}
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.style.display = "none";
+                    style={{
+                      width: "100%",
+                      height: "100px",
+                      objectFit: "cover",
+                      borderRadius: "6px"
                     }}
                   />
                 )}
-                <h4 style={{ fontSize: "14px", margin: "6px 0" }}>{item.title}</h4>
-                <p style={{ fontSize: "13px", color: "#555" }}>₹{item.rentPerDay}/day</p>
+
+                <h4 style={{ fontSize: "14px", margin: "6px 0" }}>
+                  {item.title}
+                </h4>
+
+                <p style={{ fontSize: "13px", color: "#555" }}>
+                  ₹{item.rentPerDay}/day
+                </p>
               </div>
             ))}
           </div>
         </div>
-<<<<<<< HEAD
       )}
+
     </div>
-=======
-        
-      )}
-      <button className="back-btn" onClick={() => navigate(-1)}>
-  ← Back
-</button>
-    </div>
-     
->>>>>>> 2a3b8a3 (Added new css feature)
   );
 };
 

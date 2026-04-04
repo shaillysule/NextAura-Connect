@@ -1,389 +1,215 @@
-<<<<<<< HEAD
-/* =========================
-   RESOURCE CARD – BASE
-========================= */
-
-.resource-card {
-  position: relative;
-  background: linear-gradient(135deg, #ffffff, #f3f6f9);
-  border-radius: 20px;
-  overflow: hidden;
-  width: 280px;
-=======
  /* =========================
-   RESOURCE CARD – BASE
+RESOURCE CARD BASE
 ========================= */
- 
 .resource-card {
-  position: relative;
-  /*background: linear-gradient(135deg, #ffffff, #f3f6f9);*/
-  background: 
-  radial-gradient(circle at 10% 20%, rgba(79,163,165,0.18), transparent 40%),
-      radial-gradient(circle at 90% 30%, rgba(246,193,204,0.25), transparent 45%),
-      linear-gradient(135deg, #eef4f8, #f6e9ef);
-  border-radius: 20px;
-  overflow: visible; /* IMPORTANT (badge cut na ho) */
-  width: 280px;
-  padding-top: 10px;
->>>>>>> 2a3b8a3 (Added new css feature)
+ position: relative;
+ /*background: linear-gradient(135deg, #ffffff, #f3f6f9);*/
+background:  radial-gradient(circle at 10% 20%, rgba(79,163,165,0.18), transparent 40%),
+radial-gradient(circle at 90% 30%, rgba(246,193,204,0.25), transparent 45%),
+linear-gradient(135deg, #eef4f8, #f6e9ef);
 
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.1);
-  transition: all 0.35s ease;
-  cursor: pointer;
-<<<<<<< HEAD
-=======
-  margin-bottom: 30px;
-  margin-top: 20px;
+border-radius: 20px;
+ overflow: visible; /* IMPORTANT (badge cut na ho) */
+width: 300px;
+ padding-top: 10px;
+
+box-shadow: 0 14px 35px rgba(0, 0, 0, 0.1);
+ transition: all 0.35s ease;
+ cursor: pointer;
  
->>>>>>> 2a3b8a3 (Added new css feature)
-}
+ }
 
 /* Lift on hover */
 .resource-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 26px 50px rgba(0, 0, 0, 0.18);
+ transform: translateY(-10px);
+ box-shadow: 0 26px 50px rgba(0, 0, 0, 0.18);
 }
 
 /* =========================
-<<<<<<< HEAD
-   BADGES (TOP LEFT / RIGHT)
-========================= */
-/* =========================
-   BADGES – CLEAN LAYOUT
-=======
-   BADGES – FIXED (NO OVERLAP)
->>>>>>> 2a3b8a3 (Added new css feature)
+   BADGES – FIXED (NO OVERLAP)
 ========================= */
 
 .badge-popular {
-  position: absolute;
-<<<<<<< HEAD
-  top: 12px;
-  left: 12px;
-  background: linear-gradient(135deg, #ff9f43, #ff7a18);
-  color: white;
-  font-size: 12px;
-  padding: 6px 12px;
-  border-radius: 16px;
-=======
-  top: 14px;
-  left: 14px;
-  background: linear-gradient(135deg, #ff9f43, #ff7a18);
-  color: white;
-  font-size: 11px;
-  padding: 5px 10px;
-  border-radius: 14px;
->>>>>>> 2a3b8a3 (Added new css feature)
-  font-weight: 600;
-  z-index: 3;
+position: absolute;
+top: 14px;
+left: 14px;
+ background: linear-gradient(135deg, #ff9f43, #ff7a18);
+ color: white;
+ font-size: 11px;
+ padding: 5px 10px;
+border-radius: 14px;
+font-weight: 600;
+ z-index: 3;
+ margin-top: 8px;
 }
 
 .badge-available {
-  position: absolute;
-<<<<<<< HEAD
-  top: 12px;
-  right: 12px;
-  background: #1e8449;
-  color: white;
-  font-size: 12px;
-  padding: 6px 12px;
-  border-radius: 16px;
-=======
-  top: 14px;
-  right: 14px;
-  background: #22c55e;
-  color: white;
-  font-size: 11px;
-  padding: 5px 10px;
-  border-radius: 14px;
->>>>>>> 2a3b8a3 (Added new css feature)
-  font-weight: 600;
-  z-index: 3;
+position: absolute;
+ top: 14px;
+right: 14px;
+ background: #22c55e;
+ color: white;
+ font-size: 11px;
+ padding: 5px 10px;
+ border-radius: 14px;
+ font-weight: 600;
+ z-index: 3;
+ margin-top: 8px;
 }
 
-<<<<<<< HEAD
-/* Featured badge ABOVE card (no overlap) */
-.badge-featured {
-  position: absolute;
-  top: -14px;
-=======
 /* Recommended / Featured (proper above card) */
 .badge-featured {
-  position: absolute;
-  top: -12px;
->>>>>>> 2a3b8a3 (Added new css feature)
-  left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(135deg, #4fa3a5, #3b8f91);
-  color: white;
-<<<<<<< HEAD
-  font-size: 12px;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-weight: 600;
-  z-index: 4;
+ position: absolute;
+ top: -12px;
+ left: 50%;
+ transform: translateX(-50%);
+ background: linear-gradient(135deg, #4fa3a5, #3b8f91);
+ color: white;
+ font-size: 11px;
+ padding: 5px 14px;
+ border-radius: 18px;
+ font-weight: 600;
+ z-index: 4;
+ margin-top: 20px;
 }
 
-
 /* =========================
-   IMAGE
+   IMAGE – CLEAN + SMALL + DOWN
 ========================= */
 
 .resource-image {
-  position: relative;
-  overflow: hidden;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin-top: 60px;  /* 👈 niche shift */
 }
 
 .resource-image img {
-  width: 100%;
-  height: 170px;
-  object-fit: contain;
-  background: #fff;
-  transition: transform 0.4s ease;
-}
-
-/* Image zoom on hover */
-.resource-card:hover .resource-image img {
-  transform: scale(1.08);
-}
-
-/* =========================
-   BODY
-========================= */
-
-.resource-body {
-  padding: 18px;
-}
-
-.resource-body h4 {
-  font-size: 18px;
-  font-weight: 700;
-=======
-  font-size: 11px;
-  padding: 5px 14px;
-  border-radius: 18px;
-  font-weight: 600;
-  z-index: 4;
-  margin-top: 16px;
-}
-
-/* =========================
-   IMAGE – CLEAN + SMALL + DOWN
-========================= */
-
-.resource-image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 60px;   
-}
-
-.resource-image img {
-  width: 100%;         
-  height: 140px;   
-  object-fit: contain;
-  transition: transform 0.4s ease;
+width: 85%; 
+ height: 130px; 
+object-fit: contain;
+transition: transform 0.4s ease;
 }
 
 /* Image zoom */
 .resource-card:hover .resource-image img {
-  transform: scale(1.05);
+ transform: scale(1.05);
 }
 
 /* =========================
-   BODY – BETTER SPACING
+   BODY – BETTER SPACING
 ========================= */
 
 .resource-body {
-  padding: 16px 18px 18px;
-  text-align: center; 
+ padding: 16px 18px 18px;
+ text-align: center; /* 👈 clean alignment */
 }
 
 .resource-body h4 {
-  font-size: 17px;
-  font-weight: 700;
-  margin-top: 8px;
->>>>>>> 2a3b8a3 (Added new css feature)
-  margin-bottom: 4px;
-  color: #243b53;
+font-size: 17px;
+font-weight: 700;
+ margin-top: 8px;
+ margin-bottom: 4px;
+ color: #243b53;
 }
 
 .category {
-<<<<<<< HEAD
-  font-size: 13px;
-  color: #6b7280;
-  margin-bottom: 12px;
-=======
-  font-size: 12px;
-  color: #6b7280;
-  margin-bottom: 10px;
->>>>>>> 2a3b8a3 (Added new css feature)
+ font-size: 12px;
+ color: #6b7280;
+ margin-bottom: 10px;
 }
 
 /* =========================
-   PRICE + LOCATION
+   PRICE + LOCATION
 ========================= */
 
 .resource-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-<<<<<<< HEAD
-  margin-bottom: 14px;
-=======
-  margin-bottom: 12px;
->>>>>>> 2a3b8a3 (Added new css feature)
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-bottom: 12px;
 }
 
 .price {
-  font-size: 15px;
-  font-weight: 700;
-  color: #1e8449;
+ font-size: 15px;
+ font-weight: 700;
+color: #1e8449;
 }
 
 .location {
-<<<<<<< HEAD
-  font-size: 13px;
-=======
-  font-size: 15px;
->>>>>>> 2a3b8a3 (Added new css feature)
-  color: #555;
+ font-size: 12px;
+ color: #555;
 }
 
 /* =========================
-   FOOTER
+   FOOTER
 ========================= */
 
 .resource-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
 }
 
 .rating {
-<<<<<<< HEAD
-  font-size: 14px;
-=======
-  font-size: 13px;
->>>>>>> 2a3b8a3 (Added new css feature)
-  color: #f1c40f;
-  font-weight: 600;
+ font-size: 13px;
+ color: #f1c40f;
+ font-weight: 600;
 }
 
 /* =========================
-   BOOK BUTTON
+   BOOK BUTTON
 ========================= */
 
 .book-btn {
-<<<<<<< HEAD
-  padding: 8px 18px;
-  border-radius: 22px;
-  border: none;
-  background: linear-gradient(135deg, #1e8449, #28a745);
-  color: white;
-  font-size: 13px;
-=======
-  padding: 7px 16px;
-  border-radius: 20px;
-  border: none;
-  background: linear-gradient(135deg, #1e8449, #22c55e);
-  color: white;
-  font-size: 12px;
->>>>>>> 2a3b8a3 (Added new css feature)
-  cursor: pointer;
-  transition: all 0.25s ease;
+padding: 7px 16px;
+border-radius: 20px;
+border: none;
+background: linear-gradient(135deg, #1e8449, #22c55e);
+ color: white;
+font-size: 12px; cursor: pointer;
+transition: all 0.25s ease;
 }
 
 .book-btn:hover {
-<<<<<<< HEAD
-  transform: scale(1.08);
-  box-shadow: 0 8px 20px rgba(30, 132, 73, 0.4);
+transform: scale(1.05);
+box-shadow: 0 8px 20px rgba(34, 197, 94, 0.35);
 }
 
 /* =========================
-   HOVER REVEAL (SECOND LAYER)
-========================= */
-
-.resource-card::after {
-  content: "Last booked 2 hrs ago • 5 people viewed today";
-  position: absolute;
-  bottom: -40px;
-=======
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.35);
-}
-
-/* =========================
-   HOVER REVEAL (BOTTOM BAR)
+   HOVER REVEAL (BOTTOM BAR)
 ========================= */
 
 /*.resource-card::after {
-  content: "Last booked 2 hrs ago • 5 people viewed today";
-  position: absolute;
-  bottom: -42px;
->>>>>>> 2a3b8a3 (Added new css feature)
-  left: 0;
-  width: 100%;
-  background: rgba(31, 59, 68, 0.95);
-  color: white;
-<<<<<<< HEAD
-  font-size: 12px;
-  padding: 10px;
-=======
-  font-size: 11px;
-  padding: 9px;
->>>>>>> 2a3b8a3 (Added new css feature)
-  text-align: center;
-  transition: all 0.35s ease;
+  content: "Last booked 2 hrs ago • 5 people viewed today";
+  position: absolute;
+  bottom: -42px;
+  left: 0;
+  width: 100%;
+  background: rgba(31, 59, 68, 0.95);
+  color: white;
+  font-size: 11px;
+  padding: 9px;
+  text-align: center;
+  transition: all 0.35s ease;
 }
 
 .resource-card:hover::after {
-  bottom: 0;
-}
-<<<<<<< HEAD
+  bottom: 0;
+}*/
+
 /* =========================
-   FEATURED RESOURCE
+   FEATURED CARD
 ========================= */
 
 .featured {
-  transform: scale(1.03);
-  border: 2px solid rgba(79, 163, 165, 0.6);
-  box-shadow:
-    0 24px 50px rgba(79,163,165,0.3),
-    0 0 0 6px rgba(79,163,165,0.08);
+transform: scale(1.04);
+border: 2px solid rgba(79, 163, 165, 0.5);
+box-shadow: 0 20px 45px rgba(79,163,165,0.25),
+0 0 0 5px rgba(79,163,165,0.08);
 }
 
 .featured:hover {
-  transform: scale(1.05) translateY(-6px);
+transform: scale(1.06) translateY(-6px);
 }
 
-.badge-featured {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(135deg, #4fa3a5, #3b8f91);
-  color: white;
-  font-size: 12px;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-weight: 600;
-  z-index: 3;
-=======
-
-/* =========================
-   FEATURED CARD
-========================= */
-
-.featured {
-  transform: scale(1.04);
-  border: 2px solid rgba(79, 163, 165, 0.5);
-  box-shadow:
-    0 20px 45px rgba(79,163,165,0.25),
-    0 0 0 5px rgba(79,163,165,0.08);
-}
-
-.featured:hover {
-  transform: scale(1.06) translateY(-6px);
->>>>>>> 2a3b8a3 (Added new css feature)
-}
