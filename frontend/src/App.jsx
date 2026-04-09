@@ -13,6 +13,7 @@ import { Orders } from './Components/Orders/Orders';
 import { MyProducts } from './Components/MyProducts/MyProducts';
 import { Search } from './pages/Search';
 import ResourceDetail from './pages/ResourceDetail';
+// import { VerifyOtp } from "./Components/Forms/VerifyOtp";
 
 import { Profile } from './Components/SellerDashboard/Profile/Profile';
 import { SellerSettings } from './Components/SellerDashboard/SellerSettings/SellerSettings';
@@ -39,7 +40,6 @@ function App() {
           <Route path="/resource/:id" element={<ResourceDetail />} />
           <Route path="/homepage" element={<Homepage/>}/>
           <Route path="/search" element={<Search />} />
-
 
           <Route path="/seller" element={<Dashboard />}>
             <Route index element={<Cards />} />
