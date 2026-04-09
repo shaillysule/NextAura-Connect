@@ -1,0 +1,78 @@
+/* =========================
+   PAGE
+========================= */
+
+.history-page {
+  padding: 40px 60px;
+  background: #f6f9fc;
+  min-height: 100vh;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.history-page h2 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #243b53;
+  margin-bottom: 20px;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.history-page p {
+  color: #777;
+  font-size: 15px;
+  margin-top: 20px;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.history-page table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* HEADER */
+.history-page thead {
+  background: #f1f5f9;
+}
+
+.history-page th {
+  padding: 14px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  color: #34495e;
+}
+
+/* BODY */
+.history-page td {
+  padding: 14px;
+  font-size: 14px;
+  color: #555;
+  border-bottom: 1px solid #eee;
+}
+
+/* ROW HOVER */
+.history-page tbody tr:hover {
+  background: #f9fbfd;
+}
+
+/* =========================
+   AMOUNT / LAST COLUMN
+========================= */
+
+.history-page td:last-child {
+  font-weight: 600;
+  color: #1e8449;
+}

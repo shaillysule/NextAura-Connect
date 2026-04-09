@@ -15,9 +15,14 @@ export const MyProducts = () => {
     setError("");
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5000/api/resources/my", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+
+      const res = await axios.get(
+        "http://localhost:5000/api/resources/my",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
       setProducts(res.data);
     } catch (err) {
       setError("Resources load nahi hue. Please try again.");
@@ -46,26 +51,29 @@ export const MyProducts = () => {
         }
       );
 
-      // remove from UI
-      setProducts(products.filter((p) => p._id !== id));
+      setProducts((prev) => prev.filter((p) => p._id !== id));
 
       alert("Deleted successfully ✅");
-
     } catch (error) {
       console.error(error);
       alert("Delete failed ❌");
     }
   };
 
-  // ✅ EDIT FUNCTION (redirect)
+  // ✅ EDIT FUNCTION
   const handleEdit = (id) => {
-    // 👉 navigate to edit page (you can create later)
     window.location.href = `/seller/edit-product/${id}`;
   };
 
+  // ✅ FILTER
   const filteredProducts = products.filter((product) => {
-    const matchName = product.title?.toLowerCase().includes(search.toLowerCase());
-    const matchCategory = category === "All" || product.category === category;
+    const matchName = product.title
+      ?.toLowerCase()
+      .includes(search.toLowerCase());
+
+    const matchCategory =
+      category === "All" || product.category === category;
+
     return matchName && matchCategory;
   });
 
@@ -75,6 +83,7 @@ export const MyProducts = () => {
     <div className="my-products-page">
       <h2 className="section-title">My Resources</h2>
 
+      {/* FILTERS */}
       <div className="product-filters">
         <input
           type="text"
@@ -82,21 +91,30 @@ export const MyProducts = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
+
+        <select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
           {categories.map((cat) => (
-            <option key={cat} value={cat}>{cat}</option>
+            <option key={cat} value={cat}>
+              {cat}
+            </option>
           ))}
         </select>
       </div>
 
+      {/* STATES */}
       {loading && <p className="state-msg">Loading...</p>}
       {error && <p className="state-msg error-msg">{error}</p>}
+
       {!loading && !error && filteredProducts.length === 0 && (
         <p className="state-msg">
           Koi resource nahi mila. "Add Product" se pehla resource add karo!
         </p>
       )}
 
+      {/* TABLE */}
       {!loading && filteredProducts.length > 0 && (
         <div className="product-table-card">
           <table className="product-table">
@@ -110,24 +128,38 @@ export const MyProducts = () => {
                 <th>Actions</th>
               </tr>
             </thead>
+
             <tbody>
               {filteredProducts.map((product) => (
                 <tr key={product._id}>
+                  
+                  {/* IMAGE + TITLE */}
                   <td className="product-info">
                     {product.image ? (
                       <img
-                        src={product.image}
+                        src={
+                          product.image.startsWith("http")
+                            ? product.image
+                            : `http://localhost:5000${product.image}`
+                        }
                         alt={product.title}
-                        onError={(e) => (e.target.style.display = "none")}
+                        onError={(e) =>
+                          (e.target.style.display = "none")
+                        }
                       />
                     ) : (
                       <div className="img-placeholder">📦</div>
                     )}
+
                     <span>{product.title}</span>
                   </td>
+
                   <td>{product.category}</td>
+
                   <td>₹{product.rentPerDay}</td>
-                  <td>{product.address || "—"}</td>
+
+                  {/* ✅ FIXED ADDRESS */}
+                  <td>{product.location?.address || "—"}</td>
 
                   <td>
                     <span
@@ -152,7 +184,6 @@ export const MyProducts = () => {
                       onClick={() => handleDelete(product._id)}
                     />
                   </td>
-
                 </tr>
               ))}
             </tbody>

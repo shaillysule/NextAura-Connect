@@ -3,23 +3,24 @@ const router = express.Router();
 
 const authMiddleware = require("../middleware/AuthMiddleware");
 const resourceController = require("../Controllers/resourceController");
+const upload = require("../middleware/upload");
 
-// PUBLIC — All resources
+// PUBLIC
 router.get("/", resourceController.getAllResources);
 
-// PROTECTED — Seller adds a resource
-router.post("/", authMiddleware, resourceController.addResource);
+// PROTECTED (CREATE WITH IMAGE)
+router.post("/", authMiddleware, upload.single("image"), resourceController.addResource);
 
-// PUBLIC — Recommendations
+// PUBLIC
 router.get("/:id/recommend", resourceController.getRecommendedResources);
 
-// PROTECTED — Seller sees only their own resources
+// PROTECTED
 router.get("/my", authMiddleware, resourceController.getMyResources);
 
-// PUBLIC — Single resource detail
+// PUBLIC
 router.get("/:id", resourceController.getResourceById);
 
-// PROTECTED — Delete resource
+// PROTECTED
 router.delete("/:id", authMiddleware, resourceController.deleteResource);
 
 module.exports = router;

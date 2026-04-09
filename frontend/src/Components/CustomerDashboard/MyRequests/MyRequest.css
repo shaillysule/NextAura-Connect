@@ -1,0 +1,140 @@
+/* =========================
+   PAGE
+========================= */
+
+.my-requests-page {
+  padding: 40px 60px;
+  background: #f6f9fc;
+  min-height: 100vh;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #243b53;
+  margin-bottom: 20px;
+}
+
+/* =========================
+   TOP BUTTONS
+========================= */
+
+.my-requests-page button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  margin-right: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+/* My Rentals Button */
+.my-requests-page button:nth-child(2) {
+  background: #4fa3a5;
+  color: white;
+}
+
+.my-requests-page button:nth-child(2):hover {
+  background: #3b8f91;
+  transform: translateY(-2px);
+}
+
+/* My History Button */
+.my-requests-page button:nth-child(3) {
+  background: #f6c1cc;
+  color: #243b53;
+}
+
+.my-requests-page button:nth-child(3):hover {
+  background: #f29db0;
+  transform: translateY(-2px);
+}
+
+/* =========================
+   TABLE WRAPPER
+========================= */
+
+.table-wrapper {
+  margin-top: 25px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.requests-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* HEADER */
+.requests-table thead {
+  background: #f1f5f9;
+}
+
+.requests-table th {
+  padding: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #34495e;
+}
+
+/* BODY */
+.requests-table td {
+  padding: 14px;
+  font-size: 14px;
+  color: #555;
+  border-bottom: 1px solid #eee;
+}
+
+/* HOVER ROW */
+.requests-table tbody tr:hover {
+  background: #f9fbfd;
+}
+
+/* EMPTY STATE */
+.requests-table td[colspan] {
+  text-align: center;
+  color: #888;
+  padding: 20px;
+}
+
+/* =========================
+   STATUS BADGES
+========================= */
+
+.status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+/* Pending */
+.status.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+/* Approved */
+.status.approved {
+  background: #d4edda;
+  color: #155724;
+}
+
+/* Rejected */
+.status.rejected {
+  background: #f8d7da;
+  color: #721c24;
+}

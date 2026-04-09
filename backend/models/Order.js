@@ -22,6 +22,18 @@ const orderSchema = new mongoose.Schema(
       enum: ["Pending", "Approved", "Rejected"],
       default: "Pending",
     },
+
+    // ✅ NEW FIELDS (ADD THIS)
+    startDate: {
+      type: Date,
+    },
+    returnDate: {
+      type: Date,
+    },
+    isCompleted: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

@@ -2,35 +2,49 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
-const authRoutes=require('./routes/authRoutes');
-dotenv.config();
-const authMiddleware = require("./middleware/AuthMiddleware");
+
+const authRoutes = require("./routes/authRoutes");
 const resourceRoutes = require("./routes/resourceRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const sellerRoutes = require("./routes/sellerRoutes");
 const orderRoutes = require("./routes/orderRoutes");
+
+const authMiddleware = require("./middleware/AuthMiddleware");
+
+dotenv.config();
+
 const app = express();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // ✅ ADD THIS
+
+// Routes
 app.use("/api/orders", orderRoutes);
 app.use("/api/seller", sellerRoutes);
 app.use("/api/resources", resourceRoutes);
-app.use("/api/auth",authRoutes);
+app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
+
+// Static files (uploads)
+app.use("/uploads", express.static("uploads"));
+
+// Protected test route
 app.get("/api/protected", authMiddleware, (req, res) => {
-    res.json({ message: "Protected route accessed", user: req.user });
-  });
+  res.json({ message: "Protected route accessed", user: req.user });
+});
+
 // Test route
 app.get("/", (req, res) => {
   res.send("Community Resource Platform API Running...");
 });
 
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URI)
+mongoose
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
 // Server start
 const PORT = process.env.PORT || 5000;

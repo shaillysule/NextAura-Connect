@@ -23,6 +23,7 @@ const HomeTop = () => {
           <button onClick={() => navigate("/search")}>
             Search
           </button>
+
         </div>
 
         {/* Actions */}
@@ -40,6 +41,11 @@ const HomeTop = () => {
           >
             List a Resource
           </button>
+          <button className="btn-third"
+          onClick={() => navigate("/my-requests")}>
+              My Requests
+          </button>
+
         </div>
       </div>
 

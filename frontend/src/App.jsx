@@ -26,6 +26,9 @@ import Reports from './Components/AdminDashboard/Reports/Reports';
 import AdminProfile from './Components/AdminDashboard/AdminProfile/AdminProfile';
 import AdminSettings from './Components/AdminDashboard/AdminSettings/AdminSettings';
 import AdminProtectedRoute from './Components/AdminProtectedRoute';
+import { MyRequests } from './Components/CustomerDashboard/MyRequests/MyRequest';
+import MyActiveRentals from './Components/CustomerDashboard/MyActiveRentals/MyActiveRentals';
+import MyHistory from './Components/CustomerDashboard/MyHistory/MyHistory';
 
 function App() {
 
@@ -40,7 +43,10 @@ function App() {
           <Route path="/resource/:id" element={<ResourceDetail />} />
           <Route path="/homepage" element={<Homepage/>}/>
           <Route path="/search" element={<Search />} />
-
+          <Route path="/my-requests" element={<MyRequests />} />
+          <Route path="/my-rentals" element={<MyActiveRentals />} />
+          <Route path="/my-history" element={<MyHistory />} />
+          
           <Route path="/seller" element={<Dashboard />}>
             <Route index element={<Cards />} />
             <Route path="dashboard" element={<Cards />} />

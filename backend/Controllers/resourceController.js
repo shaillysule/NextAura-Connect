@@ -8,19 +8,22 @@ exports.addResource = async (req, res) => {
       category: req.body.category,
       rentPerDay: req.body.rentPerDay,
       description: req.body.description,
-      address: req.body.address,
-      location: req.body.location,
+      image: req.file ? `/uploads/${req.file.filename}` : "",
+      location: JSON.parse(req.body.location),
       owner: req.user.id,
     });
 
     await resource.save();
-    res.status(201).json({ message: "Resource added successfully", resource });
+
+    res.status(201).json({
+      message: "Resource added successfully",
+      resource,
+    });
   } catch (error) {
     console.error("addResource error:", error);
     res.status(500).json({ message: error.message });
   }
 };
-
 // GET /api/resources/my — Seller sees only their resources
 exports.getMyResources = async (req, res) => {
   try {
