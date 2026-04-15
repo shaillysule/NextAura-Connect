@@ -1,7 +1,9 @@
- import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../Components/Search/ResourceDetailpage.css";
+
+const BASE_URL = "http://localhost:5000"; // ✅ change this when deploying
 
 const ResourceDetail = () => {
   const { id } = useParams();
@@ -14,7 +16,7 @@ const ResourceDetail = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/resources/${id}/recommend`)
+      .get(`${BASE_URL}/api/resources/${id}/recommend`)
       .then((res) => setRecommended(res.data))
       .catch((err) => console.log(err));
   }, [id]);
@@ -22,7 +24,7 @@ const ResourceDetail = () => {
   useEffect(() => {
     const fetchResource = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/resources/${id}`);
+        const res = await axios.get(`${BASE_URL}/api/resources/${id}`);
         setResource(res.data);
       } catch (err) {
         setError("Resource nahi mila.");
@@ -43,11 +45,10 @@ const ResourceDetail = () => {
   return (
     <div className="resource-detail-page">
 
-      {/* 📦 Detail Section */}
       <div className="detail-container">
         {resource.image ? (
           <img
-            src={resource.image}
+            src={`${BASE_URL}${resource.image}`}
             alt={resource.title}
             className="detail-image"
             onError={(e) => {
@@ -89,17 +90,11 @@ const ResourceDetail = () => {
             onClick={async () => {
               try {
                 const token = localStorage.getItem("token");
-
                 await axios.post(
-                  "http://localhost:5000/api/orders",
+                  `${BASE_URL}/api/orders`,
                   { resourceId: resource._id },
-                  {
-                    headers: {
-                      Authorization: `Bearer ${token}`,
-                    },
-                  }
+                  { headers: { Authorization: `Bearer ${token}` } }
                 );
-
                 alert("Request Sent Successfully ✅");
               } catch (error) {
                 console.error(error);
@@ -112,11 +107,9 @@ const ResourceDetail = () => {
         </div>
       </div>
 
-      {/* 📍 Map */}
       {address && (
         <div style={{ marginTop: "40px", textAlign: "center" }}>
           <h3>📍 Pickup Location</h3>
-
           <iframe
             width="100%"
             height="300"
@@ -125,22 +118,13 @@ const ResourceDetail = () => {
             allowFullScreen
             src={`https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`}
           ></iframe>
-
-          {/* 🔙 Back Button (ONLY ONE - Map ke niche) */}
-          <button
-            className="back-btn"
-            onClick={() => navigate(-1)}
-          >
-            ← Back
-          </button>
+          <button className="back-btn" onClick={() => navigate(-1)}>← Back</button>
         </div>
       )}
 
-      {/* 🔥 Recommendations */}
       {recommended.length > 0 && (
         <div style={{ marginTop: "40px" }}>
           <h3>🔥 Recommended for you</h3>
-
           <div style={{ display: "flex", gap: "15px", flexWrap: "wrap" }}>
             {recommended.map((item) => (
               <div
@@ -157,24 +141,13 @@ const ResourceDetail = () => {
               >
                 {item.image && (
                   <img
-                    src={item.image}
+                    src={`${BASE_URL}${item.image}`}
                     alt={item.title}
-                    style={{
-                      width: "100%",
-                      height: "100px",
-                      objectFit: "cover",
-                      borderRadius: "6px"
-                    }}
+                    style={{ width: "100%", height: "100px", objectFit: "cover", borderRadius: "6px" }}
                   />
                 )}
-
-                <h4 style={{ fontSize: "14px", margin: "6px 0" }}>
-                  {item.title}
-                </h4>
-
-                <p style={{ fontSize: "13px", color: "#555" }}>
-                  ₹{item.rentPerDay}/day
-                </p>
+                <h4 style={{ fontSize: "14px", margin: "6px 0" }}>{item.title}</h4>
+                <p style={{ fontSize: "13px", color: "#555" }}>₹{item.rentPerDay}/day</p>
               </div>
             ))}
           </div>

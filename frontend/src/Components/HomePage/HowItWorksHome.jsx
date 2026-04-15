@@ -30,6 +30,13 @@ export function HowItWorksHome() {
     navigate("/seller");
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    navigate("/login");
+  };
+
+
   return (
     <>
 
@@ -65,6 +72,10 @@ export function HowItWorksHome() {
 
     <button className="seller-cta-btn" onClick={handleStartSelling}>
       Become a Seller
+    </button>
+
+    <button className="seller-cta-btn" onClick={handleLogout}>
+      Logout
     </button>
 
   </div>

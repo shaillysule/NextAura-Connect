@@ -6,6 +6,7 @@ import axios from "axios";
 
 export const Search = () => {
   const navigate = useNavigate(); // ✅ was missing in your original file
+  const BASE_URL = "http://localhost:5000";
 
   const [resources, setResources] = useState([]);
   const [search, setSearch] = useState("");
@@ -99,7 +100,7 @@ export const Search = () => {
               title={item.title}
               category={item.category}
               price={`₹${item.rentPerDay}/day`}
-              image={item.image}
+              image={`${BASE_URL}${item.image}`}
               buttonText="View Details →"
             />
           </div>

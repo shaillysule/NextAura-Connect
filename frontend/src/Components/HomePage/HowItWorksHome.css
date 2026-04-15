@@ -27,8 +27,7 @@
   }
   
   .how-card {
-    /*background: white;*/
-     background: linear-gradient(135deg,#f6c1cc,#d6dde8);
+    background: white;
     border-radius: 18px;
     padding: 30px 24px;
   
@@ -69,9 +68,6 @@
   display: flex;
   justify-content: center;
 
-  background: linear-gradient(135deg, #f8fafc, #eef4f8);
-
- /* background: linear-gradient(135deg, #f8fafc, #eef4f8);*/
    background: 
   radial-gradient(circle at 10% 20%, rgba(79,163,165,0.18), transparent 40%),
       radial-gradient(circle at 90% 30%, rgba(246,193,204,0.25), transparent 45%),
@@ -84,14 +80,8 @@
 .seller-cta-card {
 
   background: linear-gradient(135deg, #ffffff, #f1f5f9);
-
-  /*background: linear-gradient(135deg, #ffffff, #f1f5f9);*/
-   background: 
-  radial-gradient(circle at 10% 20%, rgba(79,163,165,0.18), transparent 40%),
-      radial-gradient(circle at 90% 30%, rgba(246,193,204,0.25), transparent 45%),
-      linear-gradient(135deg, #eef4f8, #f6e9ef);
-         /* background: linear-gradient(135deg,#d6dde8,#f6c1cc);*/
-    text-align: center;
+  
+  text-align: center;
   border-radius: 26px;
   padding: 50px 40px;
   max-width: 760px;
@@ -172,6 +162,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  margin-right: 10px;
 
 }
 

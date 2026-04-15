@@ -3,7 +3,6 @@ import {
   FaHome,
   FaUser,
   FaList,
-  FaChartBar,
   FaCalendarAlt
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
@@ -60,17 +59,7 @@ const Sidebar = () => {
               <span>Rentals</span>
           </NavLink>
         </li>
-        <li>
-          <NavLink
-            to="/admin/reports"
-            className={({ isActive }) =>
-              isActive ? "sidebar-link active" : "sidebar-link"
-            }
-          >
-            <FaChartBar />
-            <span>Reports</span>
-          </NavLink>
-          </li>
+
       </ul>
     </div>
   );

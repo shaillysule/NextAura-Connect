@@ -43,7 +43,7 @@ exports.getMyOrders = async (req, res) => {
   }
 };
 
-// ================= UPDATE STATUS (🔥 FIXED) =================
+// ================= UPDATE STATUS =================
 exports.updateOrderStatus = async (req, res) => {
   try {
     const { status } = req.body;
@@ -54,20 +54,15 @@ exports.updateOrderStatus = async (req, res) => {
       return res.status(404).json({ message: "Order not found" });
     }
 
-    // Only owner can update
     if (order.owner.toString() !== req.user.id) {
       return res.status(403).json({ message: "Unauthorized" });
     }
 
-    // ✅ WHEN APPROVED → SET DATES
     if (status === "Approved") {
       const today = new Date();
-
       order.startDate = today;
-
       const returnDate = new Date();
-      returnDate.setDate(today.getDate() + 3); // default 3 days
-
+      returnDate.setDate(today.getDate() + 3);
       order.returnDate = returnDate;
     }
 
@@ -91,7 +86,6 @@ exports.completeRental = async (req, res) => {
       return res.status(404).json({ message: "Order not found" });
     }
 
-    // only owner can complete
     if (order.owner.toString() !== req.user.id) {
       return res.status(403).json({ message: "Unauthorized" });
     }
@@ -113,7 +107,7 @@ exports.getAllOrders = async (req, res) => {
     const orders = await Order.find()
       .populate("customer", "name")
       .populate("owner", "name")
-      .populate("resource", "title");
+      .populate("resource", "title availableTo"); // ✅ availableTo add kiya
 
     res.json(orders);
 
@@ -144,7 +138,7 @@ exports.getMyActiveRentals = async (req, res) => {
     const rentals = await Order.find({
       customer: req.user.id,
       status: "Approved",
-      isCompleted: false, // ✅ IMPORTANT
+      isCompleted: false,
     })
       .populate("resource", "title rentPerDay image")
       .populate("owner", "name");
@@ -157,13 +151,14 @@ exports.getMyActiveRentals = async (req, res) => {
   }
 };
 
+// ================= COMPLETED RENTALS =================
 exports.getCompletedRentals = async (req, res) => {
   try {
     const orders = await Order.find({
       isCompleted: true,
       $or: [
-        { owner: req.user.id },     // seller view
-        { customer: req.user.id }   // customer view
+        { owner: req.user.id },
+        { customer: req.user.id }
       ]
     })
       .populate("resource", "title rentPerDay")

@@ -22,7 +22,6 @@ import AdminDashboard from './Components/AdminDashboard/Dashboard/Dashboard';
 import Users from './Components/AdminDashboard/Users/User';
 import Listings from './Components/AdminDashboard/Listings/Listings';
 import Rentals from './Components/AdminDashboard/Rentals/Rentals';
-import Reports from './Components/AdminDashboard/Reports/Reports';
 import AdminProfile from './Components/AdminDashboard/AdminProfile/AdminProfile';
 import AdminSettings from './Components/AdminDashboard/AdminSettings/AdminSettings';
 import AdminProtectedRoute from './Components/AdminProtectedRoute';
@@ -69,7 +68,6 @@ function App() {
             <Route path="users" element={<Users />} />
             <Route path="listings" element={<Listings />} />
             <Route path="rentals" element={<Rentals />} />
-            <Route path="reports" element={<Reports />} />
             <Route path="profile" element={<AdminProfile />} />
             <Route path="settings" element={<AdminSettings />} />
           </Route>
